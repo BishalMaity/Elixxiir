@@ -1,0 +1,2638 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mane Masters — Hair, Skin Salon &amp; Academy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --cream: #FBF4EC;
+      --cream-2: #F5E9DA;
+      --gold: #B08D57;
+      --gold-dark: #8F6E3F;
+      --espresso: #231F1E;
+      --espresso-2: #332C29;
+      --brown-text: #5A4A3D;
+      --muted: #8A7A6C;
+      --line: #E7D9C4;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--cream);
+      color: var(--espresso);
+    }
+
+    h1,
+    h2,
+    h3,
+    .font-display {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .btn-dark {
+      background: var(--espresso);
+      color: #fff;
+    }
+
+    .btn-dark:hover {
+      background: var(--espresso-2);
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: #fff;
+    }
+
+    .btn-gold:hover {
+      background: var(--gold-dark);
+    }
+
+    .icon-circle {
+      background: var(--cream-2);
+      color: var(--gold-dark);
+      border: 1px solid var(--line);
+    }
+
+    .card-shadow {
+      box-shadow: 0 20px 40px -20px rgba(35, 31, 30, 0.18);
+    }
+
+    .hair-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1.75rem;
+    }
+
+    .hair-card img {
+      transition: transform .6s ease;
+    }
+
+    .hair-card:hover img {
+      transform: scale(1.06);
+    }
+
+    /* Style updates for Interactive Services & Quote Builder */
+    .quote-tab-btn {
+      background: var(--cream-2);
+      color: var(--brown-text);
+      border: 1px solid var(--line);
+    }
+
+    .quote-tab-btn.active {
+      background: var(--espresso);
+      color: white;
+      border-color: var(--espresso);
+    }
+
+    .quote-tab-btn:hover:not(.active) {
+      background: var(--cream);
+      color: var(--espresso);
+    }
+
+    .service-item-card {
+      background: #ffffff;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .service-item-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.08);
+    }
+
+    .add-service-btn.added {
+      background: var(--espresso);
+      color: white;
+      border-color: var(--espresso);
+    }
+
+    .add-service-btn.added::before {
+      content: "✓ ";
+    }
+
+    #quote-list::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    #quote-list::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 4px;
+    }
+
+    #quote-list::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+    }
+
+    #quote-list::-webkit-scrollbar-thumb:hover {
+      background: var(--gold);
+    }
+
+    .fade-in-view {
+      animation: fadeInEffect 0.4s ease-out forwards;
+    }
+
+    @keyframes fadeInEffect {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .custom-toast {
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .liora-hero.lh-no-bg {
+      background: transparent !important;
+      background-image: none !important;
+      min-height: 0 !important;
+      height: 0 !important;
+    }
+
+    .liora-hero.lh-no-bg .lh-nav {
+      background: rgba(251, 244, 236, 0.85) !important;
+      border-bottom: 1px solid var(--line);
+    }
+
+    /* Default hidden states for mobile-specific layouts */
+    #mobile-menu-toggle,
+    .mobile-cta,
+    #mobile-quote-bar,
+    #mobile-menu-drawer {
+      display: none;
+    }
+  </style>
+</head>
+
+<body class="antialiased">
+
+  <!-- ============ HEADER ============ -->
+  <style>
+    .liora-hero {
+      --lh-bg: #F7E7D9;
+      --lh-bg2: #F4DFCC;
+      --lh-accent: #A9694F;
+      --lh-accent-dark: #8B5A42;
+      --lh-eyebrow: #B08268;
+      --lh-text-dark: #1F1B19;
+      --lh-text-body: #5B534E;
+      --lh-card-bg: rgba(255, 250, 245, 0.92);
+
+      background: linear-gradient(135deg, var(--lh-bg) 0%, var(--lh-bg2) 100%);
+      font-family: 'Inter', sans-serif;
+      color: var(--lh-text-dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .liora-hero,
+    .liora-hero * {
+      box-sizing: border-box;
+    }
+
+
+    .liora-hero .lh-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 10px 90px;
+
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .liora-hero .lh-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: var(--lh-text-dark);
+    }
+
+    .liora-hero .lh-logo svg {
+      width: 30px;
+      height: 30px;
+      color: var(--lh-accent);
+    }
+
+    .liora-hero .lh-links {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .liora-hero .lh-links a {
+      text-decoration: none;
+      color: var(--lh-text-dark);
+      font-size: 15.5px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .liora-hero .lh-links a.active {
+      color: var(--lh-accent);
+    }
+
+    .liora-hero .lh-links a svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .liora-hero .lh-booking {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--lh-accent);
+      color: #fff;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 15px 24px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+
+    .liora-hero .lh-booking:hover {
+      background: var(--lh-accent-dark);
+    }
+
+    .liora-hero .lh-booking svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .liora-hero .lh-content {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 20px;
+      align-items: end;
+      padding: 0 0 0 90px;
+      position: relative;
+      min-height: 780px;
+    }
+
+    .liora-hero .lh-text {
+      padding-bottom: 50px;
+      transform: translateY(-120px);
+    }
+
+    .liora-hero .lh-eyebrow {
+      letter-spacing: 3px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--lh-eyebrow);
+      margin-bottom: 20px;
+    }
+
+    .liora-hero .lh-headline {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: 78px;
+      line-height: 1.06;
+      color: var(--lh-text-dark);
+      margin: 0 0 26px;
+    }
+
+    .liora-hero .lh-desc {
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--lh-text-body);
+      max-width: 460px;
+      margin: 0 0 40px;
+    }
+
+    .liora-hero .lh-actions {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .liora-hero .lh-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--lh-accent);
+      color: #fff;
+      font-weight: 600;
+      font-size: 15.5px;
+      padding: 17px 26px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .liora-hero .lh-cta:hover {
+      background: var(--lh-accent-dark);
+    }
+
+    .liora-hero .lh-cta svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .liora-hero .lh-play {
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      border: 1px solid var(--lh-accent);
+      background: rgba(255, 255, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .liora-hero .lh-play-inner {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--lh-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .liora-hero .lh-play-inner svg {
+      width: 15px;
+      height: 15px;
+      color: #fff;
+      margin-left: 2px;
+    }
+
+    .liora-hero .lh-image-col {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-self: end;
+    }
+
+    .liora-hero .lh-image-col img {
+      width: 100%;
+      max-width: 760px;
+      display: block;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .liora-hero .lh-badge {
+      position: absolute;
+      background: var(--lh-card-bg);
+      backdrop-filter: blur(6px);
+      border-radius: 10px;
+      padding: 26px 28px;
+      max-width: 300px;
+      box-shadow: 0 20px 40px rgba(80, 50, 30, 0.08);
+    }
+
+    .liora-hero .lh-badge.lh-badge-1 {
+      left: -30px;
+      bottom: 110px;
+    }
+
+    .liora-hero .lh-badge.lh-badge-2 {
+      right: 10px;
+      bottom: 260px;
+    }
+
+    .liora-hero .lh-badge-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 17px;
+      margin-bottom: 10px;
+      color: var(--lh-text-dark);
+    }
+
+    .liora-hero .lh-badge-title svg {
+      width: 20px;
+      height: 20px;
+      color: var(--lh-accent);
+      flex-shrink: 0;
+    }
+
+    .liora-hero .lh-badge-desc {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--lh-text-body);
+      margin: 0;
+    }
+
+    @media (max-width: 1200px) {
+      .liora-hero .lh-nav {
+        padding: 20px 30px 0;
+      }
+
+      .liora-hero .lh-links {
+        display: none;
+      }
+
+      .liora-hero .lh-content {
+        grid-template-columns: 1fr;
+        padding: 110px 30px 0;
+        min-height: auto;
+      }
+
+      .liora-hero .lh-text {
+        transform: translateY(0);
+        padding-bottom: 20px;
+      }
+
+      .liora-hero .lh-headline {
+        font-size: 46px;
+      }
+
+      .liora-hero .lh-image-col {
+        margin-top: 40px;
+      }
+
+      .liora-hero .lh-badge {
+        position: static;
+        max-width: 100%;
+        margin-top: 16px;
+      }
+    }
+  </style>
+
+  <section id="hero-section" class="liora-hero">
+    <div class="lh-topbar"></div>
+
+    <nav class="lh-nav">
+      <div class="lh-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M12 21c-4-3-8-6.5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 4.5-4 8-10 11z" />
+        </svg>
+        Beauty Parlour
+      </div>
+
+      <ul class="lh-links">
+        <li><a href="#/" class="lh-nav-link active" data-route="home">Home</a></li>
+        <li><a href="#about" class="lh-nav-link" data-route="about">About Us</a></li>
+        <li><a href="#services" class="lh-nav-link" data-route="services">Services</a></li>
+        <li><a href="#academy" class="lh-nav-link" data-route="academy">Academy</a></li>
+        <li><a href="#visit" class="lh-nav-link" data-route="visit">Contact Us</a></li>
+      </ul>
+
+      <div class="flex items-center gap-3">
+        <a href="#booking" class="lh-booking" data-route="booking">
+          Booking Now
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </a>
+        <button id="mobile-menu-toggle"
+          class="text-[var(--lh-text-dark)] focus:outline-none p-2 rounded-md hover:bg-black/5 transition"
+          style="background: transparent; border: none; cursor: pointer;">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 24px; height: 24px;">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <div class="lh-content" id="hero-content">
+      <div class="lh-text">
+        <div class="lh-eyebrow">PURE BEAUTY CARE</div>
+        <h1 class="lh-headline">Mane Masters Hair<br>Skin Salon & Academy</h1>
+        <p class="lh-desc">Indulge in calming spa experiences and professional beauty care designed to restore your glow
+          and peace of mind.</p>
+
+        <div class="lh-actions">
+          <button class="lh-cta">
+            Get Started
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+          <div class="lh-play">
+            <div class="lh-play-inner">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 3 20 12 6 21 6 3"></polygon>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lh-image-col">
+        <img src="./imgs/Untitled design.png" alt="Woman with glowing skin touching her face">
+
+        <div class="lh-badge lh-badge-1">
+          <div class="lh-badge-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M12 15a5 5 0 1 0 0-10 5 5 0 0 0 0 10z" />
+              <path d="M8.5 13.5 7 21l5-2.5L17 21l-1.5-7.5" />
+            </svg>
+            Trusted Expertise
+          </div>
+          <p class="lh-badge-desc">Professional treatments delivered with care and experience.</p>
+        </div>
+
+        <div class="lh-badge lh-badge-2">
+          <div class="lh-badge-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M6 3h12l4 6-10 12L2 9z" />
+              <path d="M2 9h20M9 3l3 6 3-6M12 9l-3 12M12 9l3 12" />
+            </svg>
+            Premium Care
+          </div>
+          <p class="lh-badge-desc">Professional treatments delivered with care and experience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHO WE ARE ============ -->
+  <style>
+    .who-we-are {
+      --wwa-bg: #FBEEE6;
+      --wwa-accent: #A9694F;
+      --wwa-accent-dark: #8B5A42;
+      --wwa-eyebrow-color: #B08268;
+      --wwa-stat-bg: #F0DDD0;
+      --wwa-text-dark: #221E1B;
+      --wwa-text-body: #6B625C;
+
+      background: var(--wwa-bg);
+      font-family: 'Inter', sans-serif;
+      color: var(--wwa-text-dark);
+    }
+
+    .who-we-are,
+    .who-we-are * {
+      box-sizing: border-box;
+    }
+
+
+    .who-we-are .wwa-wrap {
+      max-width: 1560px;
+      margin: 0 auto;
+      padding: 68px 90px 90px;
+    }
+
+    /* header row: eyebrow left, headline right-aligned column */
+    .who-we-are .wwa-header-row {
+      display: grid;
+      grid-template-columns: minmax(160px, 280px) 1fr;
+      gap: 20px;
+      align-items: start;
+      margin-bottom: 56px;
+    }
+
+    .who-we-are .wwa-eyebrow {
+      letter-spacing: 3px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--wwa-eyebrow-color);
+      padding-top: 6px;
+    }
+
+    .who-we-are .wwa-headline {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: 64px;
+      line-height: 1.15;
+      color: var(--wwa-text-dark);
+      margin: 0;
+      max-width: 780px;
+      justify-self: end;
+      text-align: left;
+    }
+
+    .who-we-are .wwa-content-row {
+      display: grid;
+      grid-template-columns: 70% 30%;
+      gap: 40px;
+      align-items: stretch;
+    }
+
+    .who-we-are .wwa-image-box {
+      border-radius: 10px;
+      overflow: hidden;
+      height: 460px;
+    }
+
+    .who-we-are .wwa-image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .who-we-are .wwa-right-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .who-we-are .wwa-stats-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+
+    .who-we-are .wwa-stat-card {
+      background: var(--wwa-stat-bg);
+      border-radius: 10px;
+      padding: 32px 28px 24px;
+    }
+
+    .who-we-are .wwa-stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 50px;
+      font-weight: 500;
+      color: var(--wwa-accent);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .who-we-are .wwa-stat-label {
+      font-size: 15px;
+      color: var(--wwa-text-dark);
+      font-weight: 500;
+    }
+
+    .who-we-are .wwa-description {
+      font-size: 16.5px;
+      line-height: 1.65;
+      color: var(--wwa-text-body);
+      margin: 0 0 34px;
+      max-width: 480px;
+    }
+
+    .who-we-are .wwa-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--wwa-accent);
+      color: #fff;
+      font-weight: 600;
+      font-size: 15.5px;
+      padding: 17px 26px;
+      border-radius: 6px;
+      border: none;
+      width: fit-content;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .who-we-are .wwa-cta:hover {
+      background: var(--wwa-accent-dark);
+    }
+
+    .who-we-are .wwa-cta svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .who-we-are .wwa-features {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      margin-top: 78px;
+    }
+
+    .who-we-are .wwa-feature-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--wwa-text-dark);
+    }
+
+    .who-we-are .wwa-check-icon {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      border: 2px solid var(--wwa-accent);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--wwa-accent);
+    }
+
+    .who-we-are .wwa-check-icon svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    .who-we-are .wwa-feature-desc {
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--wwa-text-body);
+      padding-left: 32px;
+      margin: 0;
+    }
+
+    @media (max-width: 1100px) {
+      .who-we-are .wwa-wrap {
+        padding: 40px 24px;
+      }
+
+      .who-we-are .wwa-header-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .who-we-are .wwa-headline {
+        font-size: 40px;
+        justify-self: start;
+        max-width: 100%;
+      }
+
+      .who-we-are .wwa-content-row {
+        grid-template-columns: 1fr;
+      }
+
+      .who-we-are .wwa-image-box {
+        height: 340px;
+      }
+
+      .who-we-are .wwa-features {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+
+  <div id="home-sections">
+    <section id="about" class="who-we-are">
+
+      <div class="wwa-topbar"></div>
+
+      <div class="wwa-wrap">
+
+        <div class="wwa-header-row">
+          <div class="wwa-eyebrow">WHO WE ARE</div>
+          <h2 class="wwa-headline">Creating beauty with purpose</h2>
+        </div>
+
+        <div class="wwa-content-row">
+          <div class="wwa-image-box">
+            <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=1200&auto=format&fit=crop"
+              alt="Facial treatment at spa">
+          </div>
+
+          <div class="wwa-right-col">
+            <div class="wwa-stats-row">
+              <div class="wwa-stat-card">
+                <div class="wwa-stat-number">4.7</div>
+                <div class="wwa-stat-label">Star Rated</div>
+              </div>
+              <div class="wwa-stat-card">
+                <div class="wwa-stat-number">3K+</div>
+                <div class="wwa-stat-label">Happy Clients</div>
+              </div>
+            </div>
+
+            <p class="wwa-description">
+              Our beauty and wellness services combine modern techniques with a relaxing atmosphere to help you feel
+              beautiful, confident, and renewed.
+            </p>
+
+            <button class="wwa-cta">
+              Book Appointment
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="wwa-features">
+          <div class="wwa-feature">
+            <div class="wwa-feature-title">
+              <span class="wwa-check-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+              Hair Transformation
+            </div>
+            <p class="wwa-feature-desc">Stylish haircuts, coloring, smoothing, and treatments tailored just for you.</p>
+          </div>
+
+          <div class="wwa-feature">
+            <div class="wwa-feature-title">
+              <span class="wwa-check-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+              Skin Perfection
+            </div>
+            <p class="wwa-feature-desc">Glow-enhancing facials and skincare solutions using modern techniques.</p>
+          </div>
+
+          <div class="wwa-feature">
+            <div class="wwa-feature-title">
+              <span class="wwa-check-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+              Certified Beauty Professionals
+            </div>
+            <p class="wwa-feature-desc">Experienced stylists and therapists delivering exceptional salon experiences.
+            </p>
+          </div>
+
+          <div class="wwa-feature">
+            <div class="wwa-feature-title">
+              <span class="wwa-check-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+              Salon & Academy Excellence
+            </div>
+            <p class="wwa-feature-desc">Premium beauty services with expert training for future beauty professionals.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ============ SERVICES ============ -->
+    <style>
+      :root {
+        --cream: #f4f1e6;
+        --deep-green: #2b3324;
+        --mid-green: #3f4a34;
+        --pale-green: #dfe3c8;
+        --white: #f7f7f2;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--cream);
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        padding: 20px;
+      }
+
+      .hero {
+        position: relative;
+        max-width: 1400px;
+        margin: 0 auto;
+        border-radius: 20px;
+        overflow: hidden;
+        padding: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+        min-height: 480px;
+        background: transparent;
+      }
+
+      /* soft leafy texture overlay */
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+
+        background: url("./imgs/11.png") center center / cover no-repeat;
+
+        transform: scale(1.08);
+        filter: blur(8px);
+        z-index: 0;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(20, 25, 18, 0.55);
+        z-index: 1;
+      }
+
+      .hero-text,
+      .card-row {
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-text {
+        position: relative;
+        z-index: 2;
+        color: var(--white);
+        max-width: 380px;
+        flex-shrink: 0;
+      }
+
+      .hero-text h1 {
+        font-size: 2.6rem;
+        font-weight: 500;
+        line-height: 1.2;
+        margin: 0 0 24px 0;
+        letter-spacing: -0.5px;
+      }
+
+      .hero-text p {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: rgba(247, 247, 242, 0.85);
+        margin: 0 0 32px 0;
+      }
+
+      .cta-btn {
+        display: inline-block;
+        background: var(--pale-green);
+        color: var(--deep-green);
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 16px 32px;
+        border-radius: 30px;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      .cta-btn:hover {
+        background: #eef1de;
+      }
+
+      .card-row {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        gap: 20px;
+        flex-shrink: 0;
+      }
+
+      .card {
+        position: relative;
+        width: 220px;
+        height: 400px;
+        border-radius: 18px;
+        overflow: hidden;
+        background: #1c2417;
+        display: flex;
+        align-items: flex-end;
+        padding: 24px;
+      }
+
+      .card-placeholder {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .card-placeholder::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top,
+            rgba(0, 0, 0, .6),
+            rgba(0, 0, 0, .15));
+      }
+
+      .card-label {
+        position: relative;
+        z-index: 1;
+        color: #fff;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
+      .hair-service {
+        background-image: url("https://plus.unsplash.com/premium_photo-1669675935927-0ed8935e6600?q=80&w=688&auto=format&fit=crop");
+      }
+
+      .facial-service {
+        background-image: url("https://images.unsplash.com/photo-1761718210089-ba3bb5ccb54f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+      }
+
+      .grooming-service {
+        background-image: url("https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=688&q=80");
+      }
+
+      .card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.05) 55%, rgba(0, 0, 0, 0) 100%);
+      }
+
+      .card-label {
+        position: relative;
+        z-index: 3;
+        color: var(--white);
+        font-size: 1.35rem;
+        font-weight: 500;
+        line-height: 1.3;
+      }
+
+      /* zoom controls, decorative only */
+      .map-controls {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .map-controls button {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: none;
+        background: var(--cream);
+        color: var(--deep-green);
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      @media (max-width: 1000px) {
+        .hero {
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 40px 30px;
+        }
+
+        .card-row {
+          width: 100%;
+          overflow-x: auto;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .hero-text h1 {
+          font-size: 1.9rem;
+        }
+
+        .card {
+          width: 160px;
+          height: 300px;
+        }
+      }
+    </style>
+
+    <section>
+      <div class="hero">
+        <div class="hero-text">
+          <h1>Your Beauty,<br>Our Passion</h1>
+          <p>From hair styling and skincare to makeup and grooming,<br>we provide expert beauty treatments tailored just
+            for you.</p>
+          <a href="#services" class="cta-btn desktop-cta">Explore Services</a>
+        </div>
+
+        <div class="card-row">
+          <div class="card">
+            <div class="card-placeholder hair-service">
+              <div class="card-label">Hair Services</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-placeholder facial-service">
+              <div class="card-label">Facial & Skin Care</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-placeholder grooming-service">
+              <div class="card-label">Grooming Services</div>
+            </div>
+          </div>
+        </div>
+
+        <a href="#services" class="cta-btn mobile-cta">Explore Services</a>
+      </div>
+    </section>
+
+    <!-- ============ BEAUTY CARE ============ -->
+    <section class="max-w-7xl mx-auto px-6 lg:px-10 py-24">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <p class="tracking-[0.25em] text-xs font-semibold text-[var(--gold-dark)] mb-4">BEAUTY CARE</p>
+          <h2 class="font-display text-4xl leading-tight mb-8">Skin care that keeps pace with your hair care</h2>
+          <p class="text-[var(--muted)] leading-relaxed mb-10 max-w-md">Facials, cleanups and grooming, delivered with
+            the same trained-expert approach as our hair services.</p>
+          <div class="grid grid-cols-2 gap-y-8 gap-x-8">
+            <div class="flex items-start gap-3">
+              <span class="icon-circle w-10 h-10 rounded-full flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M12 21c-4.97-4.5-8-7.5-8-11a5 5 0 0110-1 5 5 0 0110 1c0 3.5-3.03 6.5-8 11z" />
+                </svg>
+              </span>
+              <div>
+                <p class="font-semibold text-sm mb-1">Facials &amp; Cleanups</p>
+                <p class="text-xs text-[var(--muted)] max-w-[160px]">Brightening, de-tan and deep-cleanse facials.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="icon-circle w-10 h-10 rounded-full flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M12 3v1.5M12 19.5V21M4.22 4.22l1.06 1.06M18.72 18.72l1.06 1.06M3 12h1.5M19.5 12H21M4.22 19.78l1.06-1.06M18.72 5.28l1.06-1.06M12 7.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9z" />
+                </svg>
+              </span>
+              <div>
+                <p class="font-semibold text-sm mb-1">Waxing &amp; Grooming</p>
+                <p class="text-xs text-[var(--muted)] max-w-[160px]">Full grooming services in a relaxed setting.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="icon-circle w-10 h-10 rounded-full flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+                </svg>
+              </span>
+              <div>
+                <p class="font-semibold text-sm mb-1">Manicure &amp; Pedicure</p>
+                <p class="text-xs text-[var(--muted)] max-w-[160px]">Nail care to complete your salon visit.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="icon-circle w-10 h-10 rounded-full flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </span>
+              <div>
+                <p class="font-semibold text-sm mb-1">Skin Consultations</p>
+                <p class="text-xs text-[var(--muted)] max-w-[160px]">A personalised skin care plan from our team.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="relative flex justify-center">
+          <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=700&q=80"
+            alt="Facial and skin care" class="rounded-[3rem] w-full max-w-md h-[480px] object-cover card-shadow">
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ACADEMY CTA ============ -->
+    <section id="academy" class="max-w-7xl mx-auto px-6 lg:px-10 pb-20">
+      <div class="bg-[var(--espresso)] rounded-[2.5rem] grid md:grid-cols-2 items-center overflow-hidden">
+        <div class="p-12 lg:p-16">
+          <p class="tracking-[0.25em] text-xs font-semibold text-[var(--gold)] mb-4">MANE MASTERS ACADEMY</p>
+          <h2 class="font-display text-4xl leading-tight text-white mb-6">Train with the stylists Kolkata books</h2>
+          <p class="text-white/70 mb-8 max-w-sm">Hands-on hairdressing, colour and beauty courses with certification,
+            taught inside a working salon floor.</p>
+          <a href="#booking"
+            class="bg-white text-[var(--espresso)] rounded-full px-7 py-3.5 text-sm font-medium inline-block hover:bg-[var(--cream-2)] transition">Enquire
+            About Courses</a>
+        </div>
+        <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=700&q=80"
+          alt="Academy training session" class="w-full h-[340px] md:h-[420px] object-cover">
+      </div>
+    </section>
+
+    <!-- ============ QUICK BOOKING FORM ============ -->
+    <section id="booking" class="max-w-7xl mx-auto px-6 lg:px-10 py-16">
+      <div class="grid lg:grid-cols-2 gap-12 items-center bg-white rounded-[2.5rem] card-shadow overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=700&q=80"
+          alt="Booking" class="w-full h-full object-cover min-h-[420px]">
+        <div class="p-10 lg:p-4 lg:pr-14">
+          <p class="tracking-[0.25em] text-xs font-semibold text-[var(--gold-dark)] mb-4">BOOK AN APPOINTMENT</p>
+          <h2 class="font-display text-3xl leading-tight mb-2">Reserve your visit at Mane Masters</h2>
+          <p class="text-sm text-[var(--muted)] mb-8">Tell us what you need and we'll confirm your slot at our
+            Tollygunge studio.</p>
+          <form class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-medium mb-1.5">Full Name *</label>
+              <input type="text" placeholder="Enter your Name"
+                class="w-full rounded-xl border border-[var(--line)] bg-[var(--cream)] px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-[var(--gold)]">
+            </div>
+            <div>
+              <label class="block text-xs font-medium mb-1.5">Phone Number *</label>
+              <input type="text" placeholder="Enter your number"
+                class="w-full rounded-xl border border-[var(--line)] bg-[var(--cream)] px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-[var(--gold)]">
+            </div>
+            <div class="sm:col-span-2">
+              <label class="block text-xs font-medium mb-1.5">Select Service</label>
+              <select
+                class="w-full rounded-xl border border-[var(--line)] bg-[var(--cream)] px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-[var(--gold)]">
+                <option>Haircut &amp; Styling</option>
+                <option>Colour &amp; Highlights</option>
+                <option>Keratin &amp; Smoothening</option>
+                <option>Hair Spa &amp; Treatment</option>
+                <option>Bridal &amp; Party Look</option>
+                <option>Facial &amp; Skin Cleanup</option>
+                <option>Scalp &amp; Dandruff Care</option>
+                <option>Academy Course Enquiry</option>
+              </select>
+            </div>
+            <div class="sm:col-span-2">
+              <label class="block text-xs font-medium mb-1.5">Message / Selected Services Quote</label>
+              <textarea id="booking-notes"
+                placeholder="Any special requests or selected services summary from the quote builder..." rows="3"
+                class="w-full rounded-xl border border-[var(--line)] bg-[var(--cream)] px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-[var(--gold)]"></textarea>
+            </div>
+            <div>
+              <label class="block text-xs font-medium mb-1.5">Preferred Date</label>
+              <input type="text" placeholder="mm/dd/yyyy"
+                class="w-full rounded-xl border border-[var(--line)] bg-[var(--cream)] px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-[var(--gold)]">
+            </div>
+            <div>
+              <label class="block text-xs font-medium mb-1.5">Preferred Time</label>
+              <input type="text" placeholder="Select Time"
+                class="w-full rounded-xl border border-[var(--line)] bg-[var(--cream)] px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-[var(--gold)]">
+            </div>
+            <button type="submit"
+              class="btn-dark rounded-full px-7 py-3 text-sm font-medium sm:col-span-2 mt-2 transition">Book
+              Appointment</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STATS ============ -->
+    <section class="max-w-6xl mx-auto px-6 py-16">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
+        <div>
+          <p class="font-display text-3xl mb-1">15+</p>
+          <p class="text-xs text-[var(--muted)]">Trained Stylists</p>
+        </div>
+        <div>
+          <p class="font-display text-3xl mb-1">5K+</p>
+          <p class="text-xs text-[var(--muted)]">Happy Clients</p>
+        </div>
+        <div>
+          <p class="font-display text-3xl mb-1">8+</p>
+          <p class="text-xs text-[var(--muted)]">Core Services</p>
+        </div>
+        <div>
+          <p class="font-display text-3xl mb-1">100+</p>
+          <p class="text-xs text-[var(--muted)]">Academy Graduates</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS ============ -->
+    <section class="bg-[var(--cream-2)] py-20">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <p class="tracking-[0.25em] text-xs font-semibold text-[var(--gold-dark)] mb-4">CLIENT STORIES</p>
+        <h2 class="font-display text-4xl mb-14">What our clients say about us</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white rounded-3xl p-7 text-left card-shadow">
+            <p class="text-sm text-[var(--brown-text)] mb-6">My curly hair has never been cut this well — the stylist
+              actually cut it dry and shaped it to how it falls naturally.</p>
+            <div>
+              <p class="text-sm font-semibold">Ananya Basu</p>
+              <p class="text-xs text-[var(--muted)]">Regular Client</p>
+            </div>
+          </div>
+          <div class="bg-white rounded-3xl p-7 text-left card-shadow">
+            <p class="text-sm text-[var(--brown-text)] mb-6">Booked a hair spa and facial together — relaxed atmosphere
+              and my skin and scalp both feel so much better.</p>
+            <div>
+              <p class="text-sm font-semibold">Rhea Ghosh</p>
+              <p class="text-xs text-[var(--muted)]">Regular Client</p>
+            </div>
+          </div>
+          <div class="bg-white rounded-3xl p-7 text-left card-shadow">
+            <p class="text-sm text-[var(--brown-text)] mb-6">Took the academy's styling course here — hands-on training
+              on real clients, not just mannequins. Worth it.</p>
+            <div>
+              <p class="text-sm font-semibold">Sourav Dutta</p>
+              <p class="text-xs text-[var(--muted)]">Academy Graduate</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VISIT US / MAP ============ -->
+    <section id="visit" class="max-w-7xl mx-auto px-6 lg:px-10 py-20">
+      <p class="tracking-[0.25em] text-xs font-semibold text-[var(--gold-dark)] mb-4 text-center">VISIT US</p>
+      <h2 class="font-display text-4xl mb-14 text-center">Find our Tollygunge studio</h2>
+      <div class="grid lg:grid-cols-2 gap-8 items-stretch">
+        <div class="rounded-3xl overflow-hidden card-shadow min-h-[360px]">
+          <iframe
+            src="https://www.google.com/maps?q=167B,+Shyama+Prasad+Mukherjee+Rd,+Mudiali,+Tollygunge,+Kolkata,+West+Bengal+700026&output=embed"
+            width="100%" height="100%" style="border:0; min-height:360px;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade" title="Mane Masters Hair Skin Salon & Academy location">
+          </iframe>
+        </div>
+        <div class="bg-white rounded-3xl card-shadow p-8 lg:p-10 flex flex-col justify-center gap-7">
+          <div class="flex items-start gap-4">
+            <span class="icon-circle w-11 h-11 rounded-full flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+              </svg>
+            </span>
+            <div>
+              <p class="font-semibold text-sm mb-1">Address</p>
+              <p class="text-sm text-[var(--muted)]">167B, Shyama Prasad Mukherjee Rd, Mudiali,<br>Tollygunge, Kolkata,
+                West Bengal 700026</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <span class="icon-circle w-11 h-11 rounded-full flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M2.25 6.75c0 8.284 6.716 15 15 15h1.5a2.25 2.25 0 002.25-2.25v-1.372a1.125 1.125 0 00-.852-1.09l-4.423-1.106a1.125 1.125 0 00-1.173.417l-.97 1.293a11.25 11.25 0 01-6.223-6.224l1.293-.97a1.125 1.125 0 00.417-1.173L8.963 3.102a1.125 1.125 0 00-1.09-.852H6.5A2.25 2.25 0 004.25 4.5v.75z" />
+              </svg>
+            </span>
+            <div>
+              <p class="font-semibold text-sm mb-1">Phone</p>
+              <a href="tel:+918961057474" class="text-sm text-[var(--muted)] hover:text-[var(--espresso)]">+91 89610
+                57474</a>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <span class="icon-circle w-11 h-11 rounded-full flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M12 6v6l4 2M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </span>
+            <div>
+              <p class="font-semibold text-sm mb-1">Hours</p>
+              <p class="text-sm text-[var(--muted)]">Open Daily · 10:00 AM – 8:00 PM</p>
+            </div>
+          </div>
+          <a href="https://www.google.com/maps/search/?api=1&query=167B,+Shyama+Prasad+Mukherjee+Rd,+Mudiali,+Tollygunge,+Kolkata,+West+Bengal+700026"
+            target="_blank"
+            class="btn-gold rounded-full px-7 py-3 text-sm font-medium inline-block text-center transition">Get
+            Directions</a>
+        </div>
+      </div>
+    </section>
+  </div> <!-- End of home-sections -->
+
+  <!-- ============ SERVICES & QUOTE BUILDER VIEW ============ -->
+  <section id="services-view" class="hidden max-w-7xl mx-auto px-6 lg:px-10 py-12 min-h-[600px] mt-24">
+    <div class="text-center mb-12">
+      <p class="tracking-[0.25em] text-xs font-semibold text-[var(--gold-dark)] mb-3">CHOOSE YOUR TREATMENTS</p>
+      <h2 class="font-display text-4xl mb-4 text-[var(--espresso)]">Interactive Services &amp; Quote Builder</h2>
+      <p class="text-sm text-[var(--muted)] max-w-xl mx-auto">Select the services you desire to calculate a live price
+        estimate and request booking. You can customize your beauty experience details below.</p>
+    </div>
+
+    <!-- Services & Quote Grid Layout -->
+    <div class="grid lg:grid-cols-3 gap-8 items-start">
+
+      <!-- Left: Service Menu (2 Cols) -->
+      <div class="lg:col-span-2 space-y-8">
+
+        <!-- Category Tabs -->
+        <div
+          class="flex flex-wrap gap-2 border-b border-[var(--line)] pb-4 justify-center sm:justify-start quote-tab-container">
+          <button class="quote-tab-btn active px-5 py-2.5 rounded-full text-sm font-semibold transition"
+            onclick="switchQuoteTab('hair')">Hair Styling &amp; Colour</button>
+          <button class="quote-tab-btn px-5 py-2.5 rounded-full text-sm font-semibold transition"
+            onclick="switchQuoteTab('skin')">Skin &amp; Facial Care</button>
+          <button class="quote-tab-btn px-5 py-2.5 rounded-full text-sm font-semibold transition"
+            onclick="switchQuoteTab('grooming')">Grooming &amp; Waxing</button>
+          <button class="quote-tab-btn px-5 py-2.5 rounded-full text-sm font-semibold transition"
+            onclick="switchQuoteTab('bridal')">Bridal &amp; Special Packages</button>
+        </div>
+
+        <!-- Tab Content: Hair -->
+        <div id="tab-hair" class="quote-tab-content grid sm:grid-cols-2 gap-4">
+          <!-- Hair Service Card 1 -->
+          <div
+            class="service-item-card bg-white p-5 rounded-2xl border border-[var(--line)] shadow-sm flex flex-col justify-between hover:border-[var(--gold)] transition">
+            <div>
+              <div class="flex justify-between items-start gap-2 mb-2">
+                <h3 class="font-semibold text-lg text-[var(--espresso)]">Haircut &amp; Styling</h3>
+                <span class="text-sm font-bold text-[var(--gold-dark)]">₹1,200</span>
+              </div>
+              <p class="text-xs text-[var(--muted)] mb-4">Professional haircut, head massage, wash, and custom styling
+                styled by senior artist.</p>
+            </div>
+            <div class="flex justify-between items-center mt-2">
+              <span class="text-xs text-slate-400 flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                45 mins
+              </span>
+              <button
+                class="add-service-btn text-xs font-semibold px-4 py-2 rounded-full border border-[var(--gold)] text-[var(--gold-dark)] hover:bg-[var(--gold)] hover:text-white transition"
+                onclick="toggleService('hair-1', 'Haircut & Styling', 1200, 45, this)">Add to Quote</button>
+            </div>
+          </div>
+          <!-- Hair Service Card 2 -->
+          <div
+            class="service-item-card bg-white p-5 rounded-2xl border border-[var(--line)] shadow-sm flex flex-col justify-between hover:border-[var(--gold)] transition">
+            <div>
+              <div class="flex justify-between items-start gap-2 mb-2">
+                <h3 class="font-semibold text-lg text-[var(--espresso)]">Colour &amp; Highlights</h3>
+                <span class="text-sm font-bold text-[var(--gold-dark)]">₹4,500</span>
+              </div>
+              <p class="text-xs text-[var(--muted)] mb-4">Premium global hair colouring, customized highlights, and
+                shine-lock gloss treatment.</p>
+            </div>
+            <div class="flex justify-between items-center mt-2">
+              <span class="text-xs text-slate-400 flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                120 mins
+              </span>
+              <button
+                class="add-service-btn text-xs font-semibold px-4 py-2 rounded-full border border-[var(--gold)] text-[var(--gold-dark)] hover:bg-[var(--gold)] hover:text-white transition"
+                onclick="toggleService('hair-2', 'Colour & Highlights', 4500, 120, this)">Add to Quote</button>
+            </div>
+          </div>
+          <!-- Hair Service Card 3 -->
+          <div
+            class="service-item-card bg-white p-5 rounded-2xl border border-[var(--line)] shadow-sm flex flex-col justify-between hover:border-[var(--gold)] transition">
+            <div>
+              <div class="flex justify-between items-start gap-2 mb-2">
+                <h3 class="font-semibold text-lg text-[var(--espresso)]">Keratin &amp; Smoothening</h3>
+                <span class="text-sm font-bold text-[var(--gold-dark)]">₹6,000</span>
+              </div>
+              <p class="text-xs text-[var(--muted)] mb-4">Formaldehyde-free intensive smoothing treatment to eliminate
+                frizz and boost hair shine.</p>
+            </div>
+            <div class="flex justify-between items-center mt-2">
+              <span class="text-xs text-slate-400 flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                150 mins
+              </span>
+              <button
+                class="add-service-btn text-xs font-semibold px-4 py-2 rounded-full border border-[var(--gold)] text-[var(--gold-dark)] hover:bg-[var(--gold)] hover:text-white transition"
+                onclick="toggleService('hair-3', 'Keratin & Smoothening', 6000, 150, this)">Add to Quote</button>
+            </div>
+          </div>
+          <!-- Hair Service Card 4 -->
+          <div
+            class="service-item-card bg-white p-5 rounded-2xl border border-[var(--line)] shadow-sm flex flex-col justify-between hover:border-[var(--gold)] transition">
+            <div>
+              <div class="flex justify-between items-start gap-2 mb-2">
+                <h3 class="font-semibold text-lg text-[var(--espresso)]">Hair Spa &amp; Treatment</h3>
+                <span class="text-sm font-bold text-[var(--gold-dark)]">₹2,500</span>
+              </div>
+              <p class="text-xs text-[var(--muted)] mb-4">Deep conditioning scalp massage and therapy mask to repair
+                damaged hair follicles.</p>
+            </div>
+            <div class="flex justify-between items-center mt-2">
+              <span class="text-xs text-slate-400 flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                60 mins
+              </span>
+              <button
+                class="add-service-btn text-xs font-semibold px-4 py-2 rounded-full border border-[var(--gold)] text-[var(--gold-dark)] hover:bg-[var(--gold)] hover:text-white transition"
+                onclick="toggleService('hair-4', 'Hair Spa & Treatment', 2500, 60, this)">Add to Quote</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab Content: Skin (Hidden by default) -->
+        <div id="tab-skin" class="quote-tab-content hidden grid sm:grid-cols-2 gap-4">
+          <!-- Skin Card 1 -->
+          <div
+            class="service-item-card bg-white p-5 rounded-2xl border border-[var(--line)] shadow-sm flex flex-col justify-between hover:border-[var(--gold)] transition">
+            <div>
+              <div class="flex justify-between items-start gap-2 mb-2">
+                <h3 class="font-semibold text-lg text-[var(--espresso)]">Brightening Facial</h3>
+                <span class="text-sm font-bold text-[var(--gold-dark)]">₹1,800</span>
+              </div>
+              <p class="text-xs text-[var(--muted)] mb-4">Organic fruit extract facial with steam, massage, and
+                glow-boosting peel mask.</p>
+            </div>
+            <div class="flex justify-between items-center mt-2">
+              <span class="text-xs text-slate-400 flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                60 mins
+              </span>
+              <button
+                class="add-service-btn text-xs font-semibold px-4 py-2 rounded-full border border-[var(--gold)] text-[var(--gold-dark)] hover:bg-[var(--gold)] hover:text-white transition"
+                onclick="toggleService('skin-1', 'Brightening Facial', 1800, 60, this)">Add to Quote</button>
+            </div>
+          </div>
+          <!-- Skin Card 2 -->
+          <div
+            class="service-item-card bg-white p-5 rounded-2xl border border-[var(--line)] shadow-sm flex flex-col justify-between hover:border-[var(--gold)] transition">
+            <div>
+              <div class="flex justify-between items-start gap-2 mb-2">
+                <h3 class="font-semibold text-lg text-[var(--espresso)]">De-tan Cleanup</h3>
+                <span class="text-sm font-bold text-[var(--gold-dark)]">₹1,200</span>
+              </div>
+              <p class="text-xs text-[var(--muted)] mb-4">Quick clean-up focusing on tan removal, blackhead clearing and
+                oil balance.</p>
+            </div>
+            <div class="flex justify-between items-center mt-2">
+              <span class="text-xs text-slate-400 flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                35 mins
+              </span>
+              <button
+                class="add-service-btn text-xs font-semibold px-4 py-2 rounded-full border border-[var(--gold)] text-[var(--gold-dark)] hover:bg-[var(--gold)] hover:text-white transition"
+                onclick="toggleService('skin-2', 'De-tan Cleanup', 1200, 35, this)">Add to Quote</button>
+            </div>
+          </div>
+          <!-- Skin Card 3 -->
+          <div
+            class="service-item-card bg-white p-5 rounded-2xl border border-[var(--line)] shadow-sm flex flex-col justify-between hover:border-[var(--gold)] transition">
+            <div>
+              <div class="flex justify-between items-start gap-2 mb-2">
+                <h3 class="font-semibold text-lg text-[var(--espresso)]">Deep Cleanse Facial</h3>
+                <span class="text-sm font-bold text-[var(--gold-dark)]">₹2,200</span>
+              </div>
+              <p class="text-xs text-[var(--muted)] mb-4">Multi-step pore extraction, ultrasonic scaling, hydration
+                mask, and lymphatic massage.</p>
+            </div>
+            <div class="flex justify-between items-center mt-2">
+              <span class="text-xs text-slate-400 flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                75 mins
+              </span>
+              <button
+                class="add-service-btn text-xs font-semibold px-4 py-2 rounded-full border border-[var(--gold)] text-[var(--gold-dark)] hover:bg-[var(--gold)] hover:text-white transition"
+                onclick="toggleService('skin-3', 'Deep Cleanse Facial', 2200, 75, this)">Add to Quote</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab Content: Grooming (Hidden by default) -->
+        <div id="tab-grooming" class="quote-tab-content hidden grid sm:grid-cols-2 gap-4">
+          <!-- Grooming Card 1 -->
+          <div
+            class="service-item-card bg-white p-5 rounded-2xl border border-[var(--line)] shadow-sm flex flex-col justify-between hover:border-[var(--gold)] transition">
+            <div>
+              <div class="flex justify-between items-start gap-2 mb-2">
+                <h3 class="font-semibold text-lg text-[var(--espresso)]">Full Grooming Package</h3>
+                <span class="text-sm font-bold text-[var(--gold-dark)]">₹3,000</span>
+              </div>
+              <p class="text-xs text-[var(--muted)] mb-4">Includes advanced hair trim, beard shaping, basic facial,
+                threading, and nail trim.</p>
+            </div>
+            <div class="flex justify-between items-center mt-2">
+              <span class="text-xs text-slate-400 flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                90 mins
+              </span>
+              <button
+                class="add-service-btn text-xs font-semibold px-4 py-2 rounded-full border border-[var(--gold)] text-[var(--gold-dark)] hover:bg-[var(--gold)] hover:text-white transition"
+                onclick="toggleService('grooming-1', 'Full Grooming Package', 3000, 90, this)">Add to Quote</button>
+            </div>
+          </div>
+          <!-- Grooming Card 2 -->
+          <div
+            class="service-item-card bg-white p-5 rounded-2xl border border-[var(--line)] shadow-sm flex flex-col justify-between hover:border-[var(--gold)] transition">
+            <div>
+              <div class="flex justify-between items-start gap-2 mb-2">
+                <h3 class="font-semibold text-lg text-[var(--espresso)]">Manicure &amp; Pedicure</h3>
+                <span class="text-sm font-bold text-[var(--gold-dark)]">₹1,800</span>
+              </div>
+              <p class="text-xs text-[var(--muted)] mb-4">Relaxing herbal soak, exfoliation scrub, nail shaping, cuticle
+                therapy, and light massage.</p>
+            </div>
+            <div class="flex justify-between items-center mt-2">
+              <span class="text-xs text-slate-400 flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                60 mins
+              </span>
+              <button
+                class="add-service-btn text-xs font-semibold px-4 py-2 rounded-full border border-[var(--gold)] text-[var(--gold-dark)] hover:bg-[var(--gold)] hover:text-white transition"
+                onclick="toggleService('grooming-2', 'Manicure & Pedicure', 1800, 60, this)">Add to Quote</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab Content: Bridal (Hidden by default) -->
+        <div id="tab-bridal" class="quote-tab-content hidden grid sm:grid-cols-2 gap-4">
+          <!-- Bridal Card 1 -->
+          <div
+            class="service-item-card bg-white p-5 rounded-2xl border border-[var(--line)] shadow-sm flex flex-col justify-between hover:border-[var(--gold)] transition">
+            <div>
+              <div class="flex justify-between items-start gap-2 mb-2">
+                <h3 class="font-semibold text-lg text-[var(--espresso)]">Bridal Makeup &amp; Styling</h3>
+                <span class="text-sm font-bold text-[var(--gold-dark)]">₹15,000</span>
+              </div>
+              <p class="text-xs text-[var(--muted)] mb-4">HD bridal makeup, hair setting/extension, saree/dupatta
+                draping, and jewelry setting.</p>
+            </div>
+            <div class="flex justify-between items-center mt-2">
+              <span class="text-xs text-slate-400 flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                180 mins
+              </span>
+              <button
+                class="add-service-btn text-xs font-semibold px-4 py-2 rounded-full border border-[var(--gold)] text-[var(--gold-dark)] hover:bg-[var(--gold)] hover:text-white transition"
+                onclick="toggleService('bridal-1', 'Bridal Makeup & Styling', 15000, 180, this)">Add to Quote</button>
+            </div>
+          </div>
+          <!-- Bridal Card 2 -->
+          <div
+            class="service-item-card bg-white p-5 rounded-2xl border border-[var(--line)] shadow-sm flex flex-col justify-between hover:border-[var(--gold)] transition">
+            <div>
+              <div class="flex justify-between items-start gap-2 mb-2">
+                <h3 class="font-semibold text-lg text-[var(--espresso)]">Party Makeup</h3>
+                <span class="text-sm font-bold text-[var(--gold-dark)]">₹5,000</span>
+              </div>
+              <p class="text-xs text-[var(--muted)] mb-4">Glam or subtle makeup and basic hair setting/blow dry for
+                parties and occasions.</p>
+            </div>
+            <div class="flex justify-between items-center mt-2">
+              <span class="text-xs text-slate-400 flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                90 mins
+              </span>
+              <button
+                class="add-service-btn text-xs font-semibold px-4 py-2 rounded-full border border-[var(--gold)] text-[var(--gold-dark)] hover:bg-[var(--gold)] hover:text-white transition"
+                onclick="toggleService('bridal-2', 'Party Makeup', 5000, 90, this)">Add to Quote</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Quote Summary Sidebar -->
+      <div id="desktop-quote-sidebar" class="lg:sticky lg:top-24">
+        <div class="bg-[var(--espresso)] text-white p-6 rounded-[2rem] card-shadow border border-[var(--espresso-2)]">
+          <h3 class="font-display text-2xl mb-4 text-center border-b border-white/10 pb-4">Quote Summary</h3>
+
+          <!-- Selected List -->
+          <div id="quote-list" class="space-y-3 mb-6 max-h-[220px] overflow-y-auto pr-1">
+            <p class="text-xs text-white/50 text-center py-4">No treatments selected. Add services to build your
+              customized quote.</p>
+          </div>
+
+          <!-- Calculations -->
+          <div class="space-y-2 border-t border-white/10 pt-4 text-sm text-white/80">
+            <div class="flex justify-between">
+              <span>Total Duration:</span>
+              <span id="quote-duration" class="font-semibold text-white">0 mins</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Subtotal:</span>
+              <span id="quote-subtotal" class="font-semibold text-white">₹0</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Tax (GST 18%):</span>
+              <span id="quote-tax" class="font-semibold text-white">₹0</span>
+            </div>
+            <div class="flex justify-between text-base border-t border-white/10 pt-3 text-white font-bold">
+              <span>Estimated Total:</span>
+              <span id="quote-total" class="text-[var(--gold)]">₹0</span>
+            </div>
+          </div>
+
+          <!-- Action -->
+          <button id="book-quote-btn"
+            class="w-full mt-6 bg-[var(--gold)] hover:bg-[var(--gold-dark)] text-white font-semibold py-3 px-4 rounded-xl text-center text-sm transition-all duration-200 cursor-not-allowed opacity-50"
+            onclick="proceedToBookQuote()" disabled>Book Selected Services</button>
+          <p class="text-[10px] text-white/40 text-center mt-2.5 leading-relaxed">Tax calculations are estimates. Prices
+            may vary depending on hair length and stylist tier.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="bg-[var(--cream-2)] pt-16 pb-8 border-t border-[var(--line)]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 grid md:grid-cols-5 gap-10 mb-12">
+      <div class="md:col-span-2">
+        <a href="#" class="font-display text-2xl text-[var(--espresso)]">Mane Masters<span
+            class="text-[var(--gold-dark)]">.</span></a>
+        <p class="text-sm text-[var(--muted)] mt-4 max-w-xs">Hair, skin salon &amp; academy in Tollygunge, Kolkata —
+          expert care and expert training, side by side.</p>
+      </div>
+      <div>
+        <p class="font-semibold text-sm mb-4">Pages</p>
+        <ul class="space-y-2 text-sm text-[var(--muted)]">
+          <li>Home</li>
+          <li>About Us</li>
+          <li>Services</li>
+          <li>Hair Guide</li>
+          <li>Academy</li>
+          <li>Contact Us</li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold text-sm mb-4">Services</p>
+        <ul class="space-y-2 text-sm text-[var(--muted)]">
+          <li>Hair Styling &amp; Colour</li>
+          <li>Skin &amp; Facial Care</li>
+          <li>Bridal Looks</li>
+          <li>Academy Courses</li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold text-sm mb-4">Get In Touch</p>
+        <p class="text-sm text-[var(--muted)] mb-1">+91 89610 57474</p>
+        <p class="text-sm text-[var(--muted)] mb-4">167B, Shyama Prasad Mukherjee Rd, Mudiali,<br>Tollygunge, Kolkata,
+          West Bengal 700026</p>
+        <div class="flex gap-2">
+          <input type="email" placeholder="Enter your email"
+            class="flex-1 rounded-full border border-[var(--line)] bg-white px-4 py-2 text-xs outline-none">
+          <button class="btn-dark rounded-full px-4 py-2 text-xs font-medium">Subscribe</button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="max-w-7xl mx-auto px-6 lg:px-10 pt-6 border-t border-[var(--line)] flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-[var(--muted)]">
+      <p>Copyright © 2026 Mane Masters Hair Skin Salon &amp; Academy</p>
+      <div class="flex gap-6">
+        <span>Terms of use</span><span>Privacy Policy</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ MOBILE-ONLY RESPONSIVE FIXES ============
+       Everything below is wrapped in max-width media queries so desktop
+       and laptop layouts, colors and fonts are completely untouched. -->
+  <style>
+    @media (max-width: 768px) {
+
+      /* ---------- Header / Hero ---------- */
+      .liora-hero .lh-nav {
+        padding: 14px 18px;
+      }
+
+      .liora-hero .lh-logo {
+        font-size: 19px;
+        gap: 6px;
+      }
+
+      .liora-hero .lh-logo svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      .liora-hero .lh-booking {
+        padding: 10px 16px;
+        font-size: 12.5px;
+        gap: 6px;
+      }
+
+      .liora-hero .lh-booking svg {
+        width: 11px;
+        height: 11px;
+      }
+
+      .liora-hero .lh-content {
+        padding: 96px 20px 0;
+        gap: 24px;
+      }
+
+      .liora-hero .lh-eyebrow {
+        font-size: 11px;
+        margin-bottom: 12px;
+      }
+
+      .liora-hero .lh-headline {
+        font-size: 34px;
+        line-height: 1.15;
+      }
+
+      .liora-hero .lh-desc {
+        font-size: 14.5px;
+        max-width: 100%;
+        margin-bottom: 26px;
+      }
+
+      .liora-hero .lh-actions {
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .liora-hero .lh-cta {
+        padding: 13px 20px;
+        font-size: 13.5px;
+        width: 100%;
+        justify-content: center;
+      }
+
+      /* Play button removed on mobile per design reference */
+      .liora-hero .lh-play {
+        display: none;
+      }
+
+      .liora-hero .lh-image-col {
+        display: block !important;
+        position: relative !important;
+        width: 100% !important;
+        border-radius: 18px;
+        overflow: hidden;
+      }
+
+      .liora-hero .lh-image-col img {
+        max-width: 100%;
+        border-radius: 18px;
+        display: block;
+      }
+
+      /* Badges sit ON TOP of the hero image, mirroring the reference layout */
+      .liora-hero .lh-badge {
+        position: absolute !important;
+        width: auto !important;
+        max-width: 62% !important;
+        margin-top: 0 !important;
+        padding: 12px 14px !important;
+        border-radius: 12px !important;
+        box-shadow: 0 8px 20px rgba(80, 50, 30, 0.18) !important;
+        box-sizing: border-box !important;
+      }
+
+      .liora-hero .lh-badge.lh-badge-1 {
+        left: 10px !important;
+        right: auto !important;
+        bottom: 14px !important;
+        top: auto !important;
+      }
+
+      .liora-hero .lh-badge.lh-badge-2 {
+        right: 10px !important;
+        left: auto !important;
+        top: 14px !important;
+        bottom: auto !important;
+      }
+
+      .liora-hero .lh-badge-title {
+        font-size: 12.5px;
+        gap: 6px;
+        margin-bottom: 4px;
+      }
+
+      .liora-hero .lh-badge-title svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      .liora-hero .lh-badge-desc {
+        font-size: 11px;
+        line-height: 1.35;
+      }
+
+      /* ---------- Who We Are ---------- */
+      .who-we-are .wwa-wrap {
+        padding: 32px 18px 44px;
+      }
+
+      .who-we-are .wwa-eyebrow {
+        font-size: 11px;
+      }
+
+      .who-we-are .wwa-headline {
+        font-size: 28px;
+        line-height: 1.2;
+      }
+
+      .who-we-are .wwa-image-box {
+        height: 220px;
+      }
+
+      .who-we-are .wwa-stats-row {
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      .who-we-are .wwa-stat-card {
+        padding: 20px 16px 16px;
+      }
+
+      .who-we-are .wwa-stat-number {
+        font-size: 32px;
+        margin-bottom: 6px;
+      }
+
+      .who-we-are .wwa-stat-label {
+        font-size: 13px;
+      }
+
+      .who-we-are .wwa-description {
+        font-size: 14.5px;
+        margin-bottom: 22px;
+      }
+
+      .who-we-are .wwa-cta {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 20px;
+      }
+
+      .who-we-are .wwa-features {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin-top: 40px;
+      }
+
+      /* ---------- "Your Beauty, Our Passion" services teaser ---------- */
+      .hero {
+        padding: 28px 20px;
+        border-radius: 16px;
+        flex-direction: column;
+        align-items: stretch;
+        min-height: 0;
+        gap: 24px;
+      }
+
+      .hero-text {
+        max-width: 100%;
+      }
+
+      .hero-text h1 {
+        font-size: 1.7rem;
+        margin-bottom: 14px;
+      }
+
+      .hero-text p {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+        line-height: 1.55;
+      }
+
+      .cta-btn {
+        display: block;
+        text-align: center;
+        padding: 14px 24px;
+      }
+
+      .card-row {
+        flex-direction: column;
+        overflow-x: visible;
+        width: 100%;
+      }
+
+      .card {
+        width: 100%;
+        height: 170px;
+        padding: 18px;
+      }
+
+      /* ---------- Beauty Care icon grid ---------- */
+      .icon-circle {
+        width: 2.25rem !important;
+        height: 2.25rem !important;
+      }
+
+      /* ---------- Academy CTA ---------- */
+      #academy .p-12,
+      #academy .lg\:p-16 {
+        padding: 30px 22px !important;
+      }
+
+      #academy h2 {
+        font-size: 1.9rem !important;
+      }
+
+      /* ---------- Quick Booking form ---------- */
+      #booking img {
+        min-height: 180px !important;
+        height: 180px;
+      }
+
+      #booking .p-10 {
+        padding: 26px 22px !important;
+      }
+
+      /* ---------- Visit us / map ---------- */
+      #visit iframe,
+      #visit .min-h-\[360px\] {
+        min-height: 260px !important;
+      }
+
+      /* ---------- Interactive Quote Builder ---------- */
+      .quote-tab-btn {
+        flex: 1 1 calc(50% - 8px);
+        text-align: center;
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        font-size: 13px !important;
+      }
+
+      #services-view {
+        margin-top: 88px !important;
+        padding-bottom: 100px !important;
+      }
+
+      /* Show the quote summary inline on mobile too (below the service list),
+         in addition to the sticky bottom bar, so the calculation is always visible. */
+      #desktop-quote-sidebar {
+        margin-top: 8px;
+      }
+
+      /* ---------- Footer ---------- */
+      footer .flex.gap-2 {
+        flex-direction: column;
+      }
+
+      footer .flex.gap-2 input,
+      footer .flex.gap-2 button {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .liora-hero .lh-headline {
+        font-size: 28px;
+      }
+
+      .liora-hero .lh-logo {
+        font-size: 16px;
+      }
+
+      .liora-hero .lh-booking {
+        padding: 9px 13px;
+        font-size: 11.5px;
+      }
+
+      .who-we-are .wwa-headline {
+        font-size: 24px;
+      }
+
+      .hero-text h1 {
+        font-size: 1.5rem;
+      }
+
+      .quote-tab-btn {
+        flex: 1 1 100%;
+      }
+
+      /* Slightly tighten badges on very small screens */
+      .liora-hero .lh-badge {
+        max-width: 66% !important;
+        padding: 10px 12px !important;
+      }
+
+      .liora-hero .lh-badge-title {
+        font-size: 11.5px;
+      }
+
+      .liora-hero .lh-badge-desc {
+        font-size: 10.5px;
+      }
+
+      /* Mobile header fixes */
+      #mobile-menu-toggle {
+        display: block !important;
+      }
+
+      .liora-hero .lh-links {
+        display: none !important;
+      }
+
+      .lh-booking {
+        display: none !important;
+      }
+
+      /* Services category tabs horizontal scrolling */
+      .quote-tab-container {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        justify-content: flex-start !important;
+        padding-bottom: 12px !important;
+        scrollbar-width: none;
+      }
+
+      .quote-tab-container::-webkit-scrollbar {
+        display: none;
+      }
+
+      .quote-tab-container .quote-tab-btn {
+        flex: 0 0 auto !important;
+      }
+
+      /* Visit section layout reordering and scroll interception fix */
+      #visit .grid {
+        display: flex !important;
+        flex-direction: column-reverse !important;
+        gap: 16px !important;
+      }
+
+      #visit iframe {
+        pointer-events: none;
+        height: 250px !important;
+      }
+
+      #visit .bg-white {
+        padding: 24px 18px !important;
+      }
+
+      /* Quote sidebar stays visible inline on mobile (calculation always shown),
+         and we also surface the floating bottom summary bar for quick access. */
+      #desktop-quote-sidebar {
+        display: block !important;
+      }
+
+      /* Floating bottom bar animations */
+      #mobile-quote-bar {
+        display: flex !important;
+      }
+
+      #mobile-menu-drawer {
+        display: flex !important;
+      }
+    }
+  </style>
+
+  <!-- Mobile Slide-out Drawer Navigation -->
+  <div id="mobile-menu-drawer"
+    class="fixed inset-0 bg-[var(--espresso)] text-white z-[9999] transition-transform duration-300 translate-x-full flex flex-col justify-between p-6"
+    style="box-sizing: border-box;">
+    <div>
+      <div class="flex justify-between items-center mb-10">
+        <div class="lh-logo font-display text-2xl text-white flex items-center gap-2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+            class="w-6 h-6 text-[var(--gold)]" style="width: 24px; height: 24px;">
+            <path d="M12 21c-4-3-8-6.5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 4.5-4 8-10 11z" />
+          </svg>
+          Mane Masters
+        </div>
+        <button id="mobile-menu-close" class="text-white/70 hover:text-white p-2"
+          style="background: transparent; border: none; cursor: pointer;">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 28px; height: 28px;">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <ul class="space-y-6 text-lg font-medium" style="list-style: none; padding: 0; margin: 0;">
+        <li><a href="#/" onclick="closeMobileDrawer()"
+            class="block py-2 text-white/80 hover:text-white border-b border-white/5"
+            style="text-decoration: none;">Home</a></li>
+        <li><a href="#about" onclick="closeMobileDrawer()"
+            class="block py-2 text-white/80 hover:text-white border-b border-white/5"
+            style="text-decoration: none;">About Us</a></li>
+        <li><a href="#services" onclick="closeMobileDrawer()"
+            class="block py-2 text-white/80 hover:text-white border-b border-white/5"
+            style="text-decoration: none;">Services</a></li>
+        <li><a href="#academy" onclick="closeMobileDrawer()"
+            class="block py-2 text-white/80 hover:text-white border-b border-white/5"
+            style="text-decoration: none;">Academy</a></li>
+        <li><a href="#visit" onclick="closeMobileDrawer()"
+            class="block py-2 text-white/80 hover:text-white border-b border-white/5"
+            style="text-decoration: none;">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <div class="space-y-4">
+      <a href="#booking" onclick="closeMobileDrawer()"
+        class="w-full text-center bg-[var(--gold)] hover:bg-[var(--gold-dark)] text-white font-semibold py-3.5 rounded-xl block transition"
+        style="text-decoration: none; padding: 14px 0;">Book Appointment</a>
+      <p class="text-xs text-white/40 text-center" style="margin: 10px 0 0;">Open Daily · 10:00 AM – 8:00 PM</p>
+    </div>
+  </div>
+
+  <!-- Floating Sticky Bottom Quote Bar for Mobile -->
+  <div id="mobile-quote-bar"
+    class="fixed bottom-0 left-0 w-full bg-[var(--espresso)] text-white px-5 py-4 flex justify-between items-center z-[999] border-t border-white/10 shadow-2xl transition-all duration-300 translate-y-full md:hidden"
+    style="box-sizing: border-box;">
+    <div>
+      <p class="text-xs text-white/50" style="margin: 0; font-size: 11px;">Selected: <span id="mobile-quote-count"
+          class="font-bold text-white">0</span> services</p>
+      <p class="text-sm font-bold text-[var(--gold)]" id="mobile-quote-total" style="margin: 4px 0 0; font-size: 15px;">
+        ₹0</p>
+    </div>
+    <button
+      class="bg-[var(--gold)] hover:bg-[var(--gold-dark)] text-white px-5 py-2.5 rounded-xl text-xs font-semibold shadow-md active:scale-95 transition-all"
+      style="border: none; cursor: pointer; padding: 10px 20px;" onclick="proceedToBookQuote()">
+      Book Now
+    </button>
+  </div>
+
+  <script>
+    // Selected services database
+    let selectedServices = {};
+
+    function switchQuoteTab(category) {
+      document.querySelectorAll('.quote-tab-content').forEach(content => {
+        content.classList.add('hidden');
+      });
+      document.getElementById('tab-' + category).classList.remove('hidden');
+
+      document.querySelectorAll('.quote-tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.currentTarget.classList.add('active');
+    }
+
+    function toggleService(id, name, price, duration, button) {
+      if (selectedServices[id]) {
+        delete selectedServices[id];
+        button.classList.remove('added');
+        button.textContent = 'Add to Quote';
+      } else {
+        selectedServices[id] = { name, price, duration };
+        button.classList.add('added');
+        button.textContent = 'Added';
+      }
+      updateQuote();
+    }
+
+    function removeService(id) {
+      if (selectedServices[id]) {
+        delete selectedServices[id];
+
+        document.querySelectorAll('.add-service-btn').forEach(button => {
+          if (button.getAttribute('onclick') && button.getAttribute('onclick').includes("'" + id + "'")) {
+            button.classList.remove('added');
+            button.textContent = 'Add to Quote';
+          }
+        });
+
+        updateQuote();
+      }
+    }
+
+    function updateQuote() {
+      const quoteList = document.getElementById('quote-list');
+      const quoteDuration = document.getElementById('quote-duration');
+      const quoteSubtotal = document.getElementById('quote-subtotal');
+      const quoteTax = document.getElementById('quote-tax');
+      const quoteTotal = document.getElementById('quote-total');
+      const bookBtn = document.getElementById('book-quote-btn');
+
+      const mobileQuoteBar = document.getElementById('mobile-quote-bar');
+      const mobileQuoteCount = document.getElementById('mobile-quote-count');
+      const mobileQuoteTotal = document.getElementById('mobile-quote-total');
+
+      const keys = Object.keys(selectedServices);
+
+      if (keys.length === 0) {
+        quoteList.innerHTML = '<p class="text-xs text-white/50 text-center py-4">No treatments selected. Add services to build your customized quote.</p>';
+        quoteDuration.textContent = '0 mins';
+        quoteSubtotal.textContent = '₹0';
+        quoteTax.textContent = '₹0';
+        quoteTotal.textContent = '₹0';
+        bookBtn.disabled = true;
+        bookBtn.className = "w-full mt-6 bg-[var(--gold)] hover:bg-[var(--gold-dark)] text-white font-semibold py-3 px-4 rounded-xl text-center text-sm transition-all duration-200 cursor-not-allowed opacity-50";
+
+        if (mobileQuoteBar) mobileQuoteBar.classList.add('translate-y-full');
+        return;
+      }
+
+      let html = '';
+      let subtotal = 0;
+      let duration = 0;
+
+      keys.forEach(id => {
+        const item = selectedServices[id];
+        subtotal += item.price;
+        duration += item.duration;
+
+        html += `
+          <div class="flex justify-between items-center text-xs py-1.5 border-b border-white/5">
+            <div class="truncate max-w-[150px]">
+              <p class="font-medium text-white">${item.name}</p>
+              <p class="text-[10px] text-white/40">${item.duration} mins</p>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+              <span class="font-bold text-[var(--gold)]">₹${item.price.toLocaleString()}</span>
+              <button onclick="removeService('${id}')" class="text-white/30 hover:text-white transition">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+              </button>
+            </div>
+          </div>
+        `;
+      });
+
+      quoteList.innerHTML = html;
+
+      const tax = Math.round(subtotal * 0.18);
+      const total = subtotal + tax;
+
+      quoteDuration.textContent = `${duration} mins`;
+      quoteSubtotal.textContent = `₹${subtotal.toLocaleString()}`;
+      quoteTax.textContent = `₹${tax.toLocaleString()}`;
+      quoteTotal.textContent = `₹${total.toLocaleString()}`;
+
+      bookBtn.disabled = false;
+      bookBtn.className = "w-full mt-6 bg-[var(--gold)] hover:bg-[var(--gold-dark)] text-white font-semibold py-3 px-4 rounded-xl text-center text-sm transition-all duration-200 cursor-pointer shadow-md transform hover:-translate-y-0.5 active:translate-y-0";
+
+      // Mobile bottom action quote bar toggles
+      if (mobileQuoteCount) mobileQuoteCount.textContent = keys.length;
+      if (mobileQuoteTotal) mobileQuoteTotal.textContent = `₹${total.toLocaleString()}`;
+      if (mobileQuoteBar) {
+        const isServicesActive = !document.getElementById('services-view').classList.contains('hidden');
+        if (isServicesActive) {
+          mobileQuoteBar.classList.remove('translate-y-full');
+        } else {
+          mobileQuoteBar.classList.add('translate-y-full');
+        }
+      }
+    }
+
+    function proceedToBookQuote() {
+      const keys = Object.keys(selectedServices);
+      if (keys.length === 0) return;
+
+      let notes = 'Selected Quote Details:\n';
+      let subtotal = 0;
+      let duration = 0;
+
+      keys.forEach((id, index) => {
+        const item = selectedServices[id];
+        notes += `${index + 1}. ${item.name} (₹${item.price}, ${item.duration}m)\n`;
+        subtotal += item.price;
+        duration += item.duration;
+      });
+
+      const tax = Math.round(subtotal * 0.18);
+      const total = subtotal + tax;
+      notes += `\nSubtotal: ₹${subtotal.toLocaleString()}\nGST (18%): ₹${tax.toLocaleString()}\nEstimated Total: ₹${total.toLocaleString()}\nTotal Duration: ${duration} mins`;
+
+      const textarea = document.getElementById('booking-notes');
+      if (textarea) {
+        textarea.value = notes;
+      }
+
+      const selectElement = document.querySelector('#booking form select');
+      if (selectElement) {
+        const primaryService = selectedServices[keys[0]].name;
+
+        let foundOption = false;
+        for (let i = 0; i < selectElement.options.length; i++) {
+          const option = selectElement.options[i];
+          if (option.text.toLowerCase().includes(primaryService.toLowerCase()) ||
+            primaryService.toLowerCase().includes(option.text.toLowerCase())) {
+            selectElement.selectedIndex = i;
+            foundOption = true;
+            break;
+          }
+        }
+      }
+
+      window.location.hash = '#booking';
+      showToast('Custom quote details attached! Please fill out the booking form to reserve.');
+    }
+
+    function showToast(message) {
+      const existingToast = document.querySelector('.custom-toast');
+      if (existingToast) existingToast.remove();
+
+      const toast = document.createElement('div');
+      toast.className = 'custom-toast fixed bottom-5 right-5 bg-[var(--espresso)] text-white px-5 py-3.5 rounded-2xl shadow-xl z-[9999] border border-white/10 flex items-center gap-3 transition-all duration-500 transform translate-y-20 opacity-0';
+      toast.innerHTML = `
+        <span class="flex items-center justify-center w-6 h-6 rounded-full bg-[var(--gold)] text-white">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+        </span>
+        <span class="text-xs font-semibold">${message}</span>
+      `;
+
+      document.body.appendChild(toast);
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-20', 'opacity-0');
+      }, 50);
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+        setTimeout(() => {
+          toast.remove();
+        }, 500);
+      }, 4000);
+    }
+
+    const routes = {
+      '#/': showHomeView,
+      '#home': showHomeView,
+      '#about': () => scrollToSection('about'),
+      '#services': showServicesView,
+      '#academy': () => scrollToSection('academy'),
+      '#booking': () => scrollToSection('booking'),
+      '#visit': () => scrollToSection('visit'),
+      '#contact': () => scrollToSection('visit')
+    };
+
+    function showHomeView() {
+      const heroSection = document.getElementById('hero-section');
+      if (heroSection) heroSection.classList.remove('lh-no-bg');
+      document.getElementById('hero-content').classList.remove('hidden');
+      document.getElementById('home-sections').classList.remove('hidden');
+      document.getElementById('services-view').classList.add('hidden');
+      updateActiveNavLink('home');
+
+      const mobileQuoteBar = document.getElementById('mobile-quote-bar');
+      if (mobileQuoteBar) mobileQuoteBar.classList.add('translate-y-full');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showServicesView() {
+      const heroSection = document.getElementById('hero-section');
+      if (heroSection) heroSection.classList.add('lh-no-bg');
+      document.getElementById('hero-content').classList.add('hidden');
+      document.getElementById('home-sections').classList.add('hidden');
+      const servicesView = document.getElementById('services-view');
+      servicesView.classList.remove('hidden');
+      servicesView.classList.add('fade-in-view');
+      updateActiveNavLink('services');
+
+      const mobileQuoteBar = document.getElementById('mobile-quote-bar');
+      if (mobileQuoteBar && Object.keys(selectedServices).length > 0) {
+        mobileQuoteBar.classList.remove('translate-y-full');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function scrollToSection(id) {
+      const isHomeHidden = document.getElementById('home-sections').classList.contains('hidden');
+      if (isHomeHidden) {
+        const heroSection = document.getElementById('hero-section');
+        if (heroSection) heroSection.classList.remove('lh-no-bg');
+        document.getElementById('hero-content').classList.remove('hidden');
+        document.getElementById('home-sections').classList.remove('hidden');
+        document.getElementById('services-view').classList.add('hidden');
+      }
+      updateActiveNavLink(id);
+
+      const targetElement = document.getElementById(id);
+      if (targetElement) {
+        setTimeout(() => {
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+    }
+
+    function updateActiveNavLink(route) {
+      document.querySelectorAll('.lh-nav-link').forEach(link => {
+        if (link.getAttribute('data-route') === route) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+
+    function handleRouting() {
+      const hash = window.location.hash || '#/';
+
+      if (routes[hash]) {
+        routes[hash]();
+        return;
+      }
+
+      if (hash.startsWith('#')) {
+        const id = hash.substring(1);
+        const el = document.getElementById(id);
+        if (el) {
+          scrollToSection(id);
+          return;
+        }
+      }
+
+      showHomeView();
+    }
+
+    window.addEventListener('hashchange', handleRouting);
+    window.addEventListener('DOMContentLoaded', handleRouting);
+
+    document.querySelector('#booking form').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const nameInput = this.querySelector('input[placeholder="Enter your Name"]');
+      const phoneInput = this.querySelector('input[placeholder="Enter your number"]');
+      const serviceSelect = this.querySelector('select');
+      const notesTextarea = document.getElementById('booking-notes');
+      const dateInput = this.querySelector('input[placeholder="mm/dd/yyyy"]');
+      const timeInput = this.querySelector('input[placeholder="Select Time"]');
+
+      const name = nameInput ? nameInput.value.trim() : '';
+      const phone = phoneInput ? phoneInput.value.trim() : '';
+      const service = serviceSelect ? serviceSelect.options[serviceSelect.selectedIndex].text : '';
+      const notes = notesTextarea ? notesTextarea.value.trim() : '';
+      const date = dateInput ? dateInput.value.trim() : '';
+      const time = timeInput ? timeInput.value.trim() : '';
+
+      if (!name || !phone) {
+        showToast('Please fill in all required fields (*) to reserve.');
+        return;
+      }
+
+      let msg = `*NEW APPOINTMENT BOOKING* ✨\n\n`;
+      msg += `*Name*: ${name}\n`;
+      msg += `*Phone*: ${phone}\n`;
+      msg += `*Service*: ${service}\n`;
+      if (date) msg += `*Date*: ${date}\n`;
+      if (time) msg += `*Time*: ${time}\n`;
+
+      if (notes) {
+        msg += `\n*Details / Quote summary*:\n${notes}\n`;
+      }
+
+      const whatsappNumber = '9535322892';
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
+
+      window.open(whatsappUrl, '_blank');
+
+      showToast('Redirecting to WhatsApp to send booking details...');
+
+      this.reset();
+      selectedServices = {};
+      updateQuote();
+    });
+
+    // Mobile Drawer Controls
+    const drawer = document.getElementById('mobile-menu-drawer');
+    const toggleBtn = document.getElementById('mobile-menu-toggle');
+    const closeBtn = document.getElementById('mobile-menu-close');
+
+    if (toggleBtn && drawer) {
+      toggleBtn.addEventListener('click', () => {
+        drawer.classList.remove('translate-x-full');
+      });
+    }
+
+    if (closeBtn && drawer) {
+      closeBtn.addEventListener('click', () => {
+        drawer.classList.add('translate-x-full');
+      });
+    }
+
+    window.closeMobileDrawer = function () {
+      if (drawer) {
+        drawer.classList.add('translate-x-full');
+      }
+    }
+  </script>
+</body>
+
+</html>
