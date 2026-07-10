@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mane Masters — Hair, Skin Salon &amp; Academy</title>
+  <title>Habib's Hair &amp; Beauty Academy &amp; Salon Kolkata</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
@@ -172,6 +172,25 @@
     #mobile-quote-bar,
     #mobile-menu-drawer {
       display: none;
+    }
+
+    /* Scroll reveal transitions */
+    .reveal-section {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-section.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Mobile-specific gallery folding */
+    @media (max-width: 767px) {
+      .hidden-mobile-gallery {
+        display: none !important;
+      }
     }
   </style>
 </head>
@@ -491,7 +510,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
           <path d="M12 21c-4-3-8-6.5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 4.5-4 8-10 11z" />
         </svg>
-        Beauty Parlour
+        Habib's Hair &amp; Beauty
       </div>
 
       <ul class="lh-links">
@@ -499,6 +518,7 @@
         <li><a href="#about" class="lh-nav-link" data-route="about">About Us</a></li>
         <li><a href="#services" class="lh-nav-link" data-route="services">Services</a></li>
         <li><a href="#academy" class="lh-nav-link" data-route="academy">Academy</a></li>
+        <li><a href="#gallery" class="lh-nav-link" data-route="gallery">Gallery</a></li>
         <li><a href="#visit" class="lh-nav-link" data-route="visit">Contact Us</a></li>
       </ul>
 
@@ -523,7 +543,7 @@
     <div class="lh-content" id="hero-content">
       <div class="lh-text">
         <div class="lh-eyebrow">PURE BEAUTY CARE</div>
-        <h1 class="lh-headline">Mane Masters Hair<br>Skin Salon & Academy</h1>
+        <h1 class="lh-headline">Habib's Hair &amp; Beauty<br>Academy &amp; Salon</h1>
         <p class="lh-desc">Indulge in calming spa experiences and professional beauty care designed to restore your glow
           and peace of mind.</p>
 
@@ -1231,7 +1251,7 @@
     <section id="academy" class="max-w-7xl mx-auto px-6 lg:px-10 pb-20">
       <div class="bg-[var(--espresso)] rounded-[2.5rem] grid md:grid-cols-2 items-center overflow-hidden">
         <div class="p-12 lg:p-16">
-          <p class="tracking-[0.25em] text-xs font-semibold text-[var(--gold)] mb-4">MANE MASTERS ACADEMY</p>
+          <p class="tracking-[0.25em] text-xs font-semibold text-[var(--gold)] mb-4">HABIB'S ACADEMY</p>
           <h2 class="font-display text-4xl leading-tight text-white mb-6">Train with the stylists Kolkata books</h2>
           <p class="text-white/70 mb-8 max-w-sm">Hands-on hairdressing, colour and beauty courses with certification,
             taught inside a working salon floor.</p>
@@ -1251,7 +1271,7 @@
           alt="Booking" class="w-full h-full object-cover min-h-[420px]">
         <div class="p-10 lg:p-4 lg:pr-14">
           <p class="tracking-[0.25em] text-xs font-semibold text-[var(--gold-dark)] mb-4">BOOK AN APPOINTMENT</p>
-          <h2 class="font-display text-3xl leading-tight mb-2">Reserve your visit at Mane Masters</h2>
+          <h2 class="font-display text-3xl leading-tight mb-2">Reserve your visit at Habib's</h2>
           <p class="text-sm text-[var(--muted)] mb-8">Tell us what you need and we'll confirm your slot at our
             Tollygunge studio.</p>
           <form class="grid sm:grid-cols-2 gap-4">
@@ -1359,6 +1379,113 @@
       </div>
     </section>
 
+    <!-- ============ GALLERY SECTION ============ -->
+    <section id="gallery" class="max-w-7xl mx-auto px-6 lg:px-10 py-16">
+      <div class="text-center mb-12">
+        <p class="tracking-[0.25em] text-xs font-semibold text-[var(--gold-dark)] mb-3">OUR SALON &amp; ACADEMY</p>
+        <h2 class="font-display text-4xl mb-4 text-[var(--espresso)]">Explore Habib's Kolkata</h2>
+        <p class="text-sm text-[var(--muted)] max-w-xl mx-auto">Take a visual tour of our professional hair and beauty styling setup, learning academy, and client stations in Tollygunge.</p>
+      </div>
+
+      <!-- Responsive Grid for 8 photos (hair photo removed) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <!-- Photo 1 -->
+        <div class="gallery-card group relative overflow-hidden rounded-3xl aspect-[4/3] bg-[var(--cream-2)] card-shadow cursor-pointer border border-[var(--line)]" onclick="openLightbox(0)">
+          <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAGfVpOJPWTNTzzHMCm3ZSvbBb6eyzwkAdthvQJ_Y0UFeh3xrboEvdQbXGSWbJABPDztkS0LHT6ZHpt0RmSuc56MPB8asiB018O8iQ5VXWosdxtRNENW1paZqlvKVNCfD-vQg_KR=s1200" alt="Habib's Salon interior seating setup" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-[var(--espresso)]/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+            <div>
+              <p class="text-white text-sm font-semibold">Salon Workspace</p>
+              <p class="text-white/70 text-xs">Premium interior styling setup</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 2 -->
+        <div class="gallery-card group relative overflow-hidden rounded-3xl aspect-[4/3] bg-[var(--cream-2)] card-shadow cursor-pointer border border-[var(--line)]" onclick="openLightbox(1)">
+          <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAGnVONOL-_eC0ld947TWGswT9uiovOkT05p56bPI2K-WDSrtYmM8lYpiWyVaCykHcr455dJSQdDTLrbfBb51S5E5YTCQ-hNcXKEoUbi6WuH_SDfpCu1Wzkxs9OG--E9B0-OR6Hu=s1200" alt="Lounge reception desk at Habib's" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-[var(--espresso)]/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+            <div>
+              <p class="text-white text-sm font-semibold">Reception &amp; Lounge</p>
+              <p class="text-white/70 text-xs">Welcoming lobby lounge area</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 3 -->
+        <div class="gallery-card group relative overflow-hidden rounded-3xl aspect-[4/3] bg-[var(--cream-2)] card-shadow cursor-pointer border border-[var(--line)]" onclick="openLightbox(2)">
+          <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAFHM3zD-xMBg54gk9Bu9FsLkQI8F4rLB4waLSLGAlXPccUB2cUqtzENnpYRxDvNxWpXwwcwJzDaJnyxqEgHcUm5VNOafzXrYJbBUxQjYqQuR-opyjkgKJg3h5pDkKqkdSDGLpdP=s1200" alt="Styling mirrors seating" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-[var(--espresso)]/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+            <div>
+              <p class="text-white text-sm font-semibold">Styling Mirrors</p>
+              <p class="text-white/70 text-xs">Comfortable stations for our guests</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 4 -->
+        <div class="gallery-card hidden-mobile-gallery group relative overflow-hidden rounded-3xl aspect-[4/3] bg-[var(--cream-2)] card-shadow cursor-pointer border border-[var(--line)]" onclick="openLightbox(3)">
+          <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAHODC62YGCWOUliSEtwgwhpUlIK23BQT4URYJDixFbBf7-VEWC3aL2x_ZfRPVbCIObLaoU7ynmg55CYbOmCYrhOWJhg4gk8nOJOlCX4BedH4He4OB5yWsmEEKemGYtHYOj8JYf_jQ=s1200" alt="Habib's Hair &amp; Beauty Academy entrance Kolkata" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-[var(--espresso)]/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+            <div>
+              <p class="text-white text-sm font-semibold">Academy Entrance</p>
+              <p class="text-white/70 text-xs">Main academy entry gates</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 5 -->
+        <div class="gallery-card hidden-mobile-gallery group relative overflow-hidden rounded-3xl aspect-[4/3] bg-[var(--cream-2)] card-shadow cursor-pointer border border-[var(--line)]" onclick="openLightbox(4)">
+          <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1200&auto=format&fit=crop" alt="Premium Luxury Salon styling area" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-[var(--espresso)]/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+            <div>
+              <p class="text-white text-sm font-semibold">Luxury Vibe Styling</p>
+              <p class="text-white/70 text-xs">Plush styling zones and workspace</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 6 -->
+        <div class="gallery-card hidden-mobile-gallery group relative overflow-hidden rounded-3xl aspect-[4/3] bg-[var(--cream-2)] card-shadow cursor-pointer border border-[var(--line)]" onclick="openLightbox(5)">
+          <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?q=80&w=1200&auto=format&fit=crop" alt="Luxury Salon Reception Lobby setup" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-[var(--espresso)]/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+            <div>
+              <p class="text-white text-sm font-semibold">Premium Front Desk</p>
+              <p class="text-white/70 text-xs">Elegant reception and guest seating</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 7 -->
+        <div class="gallery-card hidden-mobile-gallery group relative overflow-hidden rounded-3xl aspect-[4/3] bg-[var(--cream-2)] card-shadow cursor-pointer border border-[var(--line)]" onclick="openLightbox(6)">
+          <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=1200&auto=format&fit=crop" alt="Premium salon hair washing stations" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-[var(--espresso)]/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+            <div>
+              <p class="text-white text-sm font-semibold">Spa &amp; Wash Stations</p>
+              <p class="text-white/70 text-xs">Relaxing hair washing backwashes</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 8 -->
+        <div class="gallery-card hidden-mobile-gallery group relative overflow-hidden rounded-3xl aspect-[4/3] bg-[var(--cream-2)] card-shadow cursor-pointer border border-[var(--line)]" onclick="openLightbox(7)">
+          <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=1200&auto=format&fit=crop" alt="Stylist detailing hair care treatment" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-[var(--espresso)]/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+            <div>
+              <p class="text-white text-sm font-semibold">Hair Detailing</p>
+              <p class="text-white/70 text-xs">Exquisite coloring and texture styling</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- View More button for Mobile -->
+      <div class="text-center mt-8 md:hidden">
+        <button id="view-more-gallery-btn" onclick="toggleMobileGallery()" class="btn-gold rounded-full px-8 py-3 text-xs font-semibold shadow-md transition-all animate-bounce" style="border: none; cursor: pointer;">
+          View More Photos
+        </button>
+      </div>
+    </section>
+
     <!-- ============ VISIT US / MAP ============ -->
     <section id="visit" class="max-w-7xl mx-auto px-6 lg:px-10 py-20">
       <p class="tracking-[0.25em] text-xs font-semibold text-[var(--gold-dark)] mb-4 text-center">VISIT US</p>
@@ -1366,9 +1493,9 @@
       <div class="grid lg:grid-cols-2 gap-8 items-stretch">
         <div class="rounded-3xl overflow-hidden card-shadow min-h-[360px]">
           <iframe
-            src="https://www.google.com/maps?q=167B,+Shyama+Prasad+Mukherjee+Rd,+Mudiali,+Tollygunge,+Kolkata,+West+Bengal+700026&output=embed"
+            src="https://maps.google.com/maps?q=Habib's+Hair+%26+Beauty+Academy+%26+Salon+Kolkata,+Metro+Station+police+station,+79,+Deshopran+Shasmol+Road,+opposite+Charumarket,+near+Rabindra+Sarobar,+Saha+Para,+Tollygunge,+Kolkata,+West+Bengal+700033&amp;output=embed"
             width="100%" height="100%" style="border:0; min-height:360px;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade" title="Mane Masters Hair Skin Salon & Academy location">
+            referrerpolicy="no-referrer-when-downgrade" title="Habib's Hair &amp; Beauty Academy &amp; Salon Kolkata location">
           </iframe>
         </div>
         <div class="bg-white rounded-3xl card-shadow p-8 lg:p-10 flex flex-col justify-center gap-7">
@@ -1383,8 +1510,7 @@
             </span>
             <div>
               <p class="font-semibold text-sm mb-1">Address</p>
-              <p class="text-sm text-[var(--muted)]">167B, Shyama Prasad Mukherjee Rd, Mudiali,<br>Tollygunge, Kolkata,
-                West Bengal 700026</p>
+              <p class="text-sm text-[var(--muted)]">Metro Station police station, 79, Deshopran Shasmol Road,<br>opposite Charumarket, near Rabindra Sarobar,<br>Saha Para, Tollygunge, Kolkata, West Bengal 700033</p>
             </div>
           </div>
           <div class="flex items-start gap-4">
@@ -1396,8 +1522,7 @@
             </span>
             <div>
               <p class="font-semibold text-sm mb-1">Phone</p>
-              <a href="tel:+918961057474" class="text-sm text-[var(--muted)] hover:text-[var(--espresso)]">+91 89610
-                57474</a>
+              <a href="tel:+919831714067" class="text-sm text-[var(--muted)] hover:text-[var(--espresso)]">+91 98317 14067</a>
             </div>
           </div>
           <div class="flex items-start gap-4">
@@ -1409,10 +1534,10 @@
             </span>
             <div>
               <p class="font-semibold text-sm mb-1">Hours</p>
-              <p class="text-sm text-[var(--muted)]">Open Daily · 10:00 AM – 8:00 PM</p>
+              <p class="text-sm text-[var(--muted)]">Open Daily · 10:00 AM – 8:30 PM</p>
             </div>
           </div>
-          <a href="https://www.google.com/maps/search/?api=1&query=167B,+Shyama+Prasad+Mukherjee+Rd,+Mudiali,+Tollygunge,+Kolkata,+West+Bengal+700026"
+          <a href="https://www.google.com/maps/place/Habib's+Hair+%26+Beauty+Academy+%26+Salon+Kolkata/@22.5041911,88.3453811,17z/"
             target="_blank"
             class="btn-gold rounded-full px-7 py-3 text-sm font-medium inline-block text-center transition">Get
             Directions</a>
@@ -1777,7 +1902,7 @@
   <footer class="bg-[var(--cream-2)] pt-16 pb-8 border-t border-[var(--line)]">
     <div class="max-w-7xl mx-auto px-6 lg:px-10 grid md:grid-cols-5 gap-10 mb-12">
       <div class="md:col-span-2">
-        <a href="#" class="font-display text-2xl text-[var(--espresso)]">Mane Masters<span
+        <a href="#" class="font-display text-2xl text-[var(--espresso)]">Habib's<span
             class="text-[var(--gold-dark)]">.</span></a>
         <p class="text-sm text-[var(--muted)] mt-4 max-w-xs">Hair, skin salon &amp; academy in Tollygunge, Kolkata —
           expert care and expert training, side by side.</p>
@@ -1804,9 +1929,8 @@
       </div>
       <div>
         <p class="font-semibold text-sm mb-4">Get In Touch</p>
-        <p class="text-sm text-[var(--muted)] mb-1">+91 89610 57474</p>
-        <p class="text-sm text-[var(--muted)] mb-4">167B, Shyama Prasad Mukherjee Rd, Mudiali,<br>Tollygunge, Kolkata,
-          West Bengal 700026</p>
+        <p class="text-sm text-[var(--muted)] mb-1">+91 98317 14067</p>
+        <p class="text-sm text-[var(--muted)] mb-4">Metro Station police station, 79, Deshopran Shasmol Road,<br>opposite Charumarket, near Rabindra Sarobar,<br>Saha Para, Tollygunge, Kolkata, West Bengal 700033</p>
         <div class="flex gap-2">
           <input type="email" placeholder="Enter your email"
             class="flex-1 rounded-full border border-[var(--line)] bg-white px-4 py-2 text-xs outline-none">
@@ -1816,7 +1940,7 @@
     </div>
     <div
       class="max-w-7xl mx-auto px-6 lg:px-10 pt-6 border-t border-[var(--line)] flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-[var(--muted)]">
-      <p>Copyright © 2026 Mane Masters Hair Skin Salon &amp; Academy</p>
+      <p>Copyright © 2026 Habib's Hair &amp; Beauty Academy &amp; Salon Kolkata</p>
       <div class="flex gap-6">
         <span>Terms of use</span><span>Privacy Policy</span>
       </div>
@@ -2224,7 +2348,7 @@
             class="w-6 h-6 text-[var(--gold)]" style="width: 24px; height: 24px;">
             <path d="M12 21c-4-3-8-6.5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 4.5-4 8-10 11z" />
           </svg>
-          Mane Masters
+          Habib's Hair &amp; Beauty
         </div>
         <button id="mobile-menu-close" class="text-white/70 hover:text-white p-2"
           style="background: transparent; border: none; cursor: pointer;">
@@ -2247,6 +2371,9 @@
         <li><a href="#academy" onclick="closeMobileDrawer()"
             class="block py-2 text-white/80 hover:text-white border-b border-white/5"
             style="text-decoration: none;">Academy</a></li>
+        <li><a href="#gallery" onclick="closeMobileDrawer()"
+            class="block py-2 text-white/80 hover:text-white border-b border-white/5"
+            style="text-decoration: none;">Gallery</a></li>
         <li><a href="#visit" onclick="closeMobileDrawer()"
             class="block py-2 text-white/80 hover:text-white border-b border-white/5"
             style="text-decoration: none;">Contact Us</a></li>
@@ -2257,7 +2384,7 @@
       <a href="#booking" onclick="closeMobileDrawer()"
         class="w-full text-center bg-[var(--gold)] hover:bg-[var(--gold-dark)] text-white font-semibold py-3.5 rounded-xl block transition"
         style="text-decoration: none; padding: 14px 0;">Book Appointment</a>
-      <p class="text-xs text-white/40 text-center" style="margin: 10px 0 0;">Open Daily · 10:00 AM – 8:00 PM</p>
+      <p class="text-xs text-white/40 text-center" style="margin: 10px 0 0;">Open Daily · 10:00 AM – 8:30 PM</p>
     </div>
   </div>
 
@@ -2278,9 +2405,152 @@
     </button>
   </div>
 
+  <!-- Lightbox Modal -->
+  <div id="lightbox-modal" class="fixed inset-0 bg-black/95 z-[10000] hidden flex-col justify-center items-center p-4 md:p-10 select-none">
+    <button class="absolute top-6 right-6 text-white/75 hover:text-white transition duration-200" style="background: transparent; border: none; cursor: pointer;" onclick="closeLightbox()">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width: 32px; height: 32px;">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+
+    <!-- Prev button -->
+    <button class="absolute left-4 md:left-10 text-white/75 hover:text-white transition duration-200 p-2 rounded-full bg-black/40 hover:bg-black/60" style="background: rgba(0,0,0,0.4); border: none; cursor: pointer;" onclick="prevLightboxImage()">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="width: 32px; height: 32px;">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+
+    <!-- Image display -->
+    <div class="max-w-5xl max-h-[80vh] w-full flex justify-center items-center relative">
+      <img id="lightbox-img" src="" alt="" class="max-w-full max-h-[80vh] object-contain rounded-xl opacity-0 transition-opacity duration-300">
+    </div>
+
+    <!-- Caption -->
+    <p id="lightbox-caption" class="text-white/90 text-sm mt-6 text-center tracking-wide font-medium"></p>
+
+    <!-- Next button -->
+    <button class="absolute right-4 md:right-10 text-white/75 hover:text-white transition duration-200 p-2 rounded-full bg-black/40 hover:bg-black/60" style="background: rgba(0,0,0,0.4); border: none; cursor: pointer;" onclick="nextLightboxImage()">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="width: 32px; height: 32px;">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </button>
+  </div>
+
   <script>
     // Selected services database
     let selectedServices = {};
+
+    // Gallery images database
+    const galleryImages = [
+      {
+        src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAGfVpOJPWTNTzzHMCm3ZSvbBb6eyzwkAdthvQJ_Y0UFeh3xrboEvdQbXGSWbJABPDztkS0LHT6ZHpt0RmSuc56MPB8asiB018O8iQ5VXWosdxtRNENW1paZqlvKVNCfD-vQg_KR=s1200",
+        title: "Salon Workspace",
+        desc: "Premium interior styling setup at Tollygunge"
+      },
+
+      {
+        src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAGnVONOL-_eC0ld947TWGswT9uiovOkT05p56bPI2K-WDSrtYmM8lYpiWyVaCykHcr455dJSQdDTLrbfBb51S5E5YTCQ-hNcXKEoUbi6WuH_SDfpCu1Wzkxs9OG--E9B0-OR6Hu=s1200",
+        title: "Reception &amp; Lounge",
+        desc: "Welcoming client lounge and reception desk"
+      },
+      {
+        src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFHM3zD-xMBg54gk9Bu9FsLkQI8F4rLB4waLSLGAlXPccUB2cUqtzENnpYRxDvNxWpXwwcwJzDaJnyxqEgHcUm5VNOafzXrYJbBUxQjYqQuR-opyjkgKJg3h5pDkKqkdSDGLpdP=s1200",
+        title: "Styling Mirrors",
+        desc: "Clean and comfortable seating stations for our salon guests"
+      },
+      {
+        src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHODC62YGCWOUliSEtwgwhpUlIK23BQT4URYJDixFbBf7-VEWC3aL2x_ZfRPVbCIObLaoU7ynmg55CYbOmCYrhOWJhg4gk8nOJOlCX4BedH4He4OB5yWsmEEKemGYtHYOj8JYf_jQ=s1200",
+        title: "Academy Entrance",
+        desc: "Main entrance to Habib's Hair &amp; Beauty Academy Kolkata"
+      },
+      {
+        src: "https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1200&auto=format&fit=crop",
+        title: "Luxury Vibe Styling",
+        desc: "Plush styling zones and workspace"
+      },
+      {
+        src: "https://images.unsplash.com/photo-1600948836101-f9ffda59d250?q=80&w=1200&auto=format&fit=crop",
+        title: "Premium Front Desk",
+        desc: "Elegant reception and guest seating"
+      },
+      {
+        src: "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=1200&auto=format&fit=crop",
+        title: "Spa &amp; Wash Stations",
+        desc: "Relaxing hair washing backwashes"
+      },
+      {
+        src: "https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=1200&auto=format&fit=crop",
+        title: "Hair Detailing",
+        desc: "Exquisite coloring and texture styling"
+      }
+    ];
+
+    let currentImageIndex = 0;
+
+    window.openLightbox = function(index) {
+      currentImageIndex = index;
+      const modal = document.getElementById('lightbox-modal');
+      const img = document.getElementById('lightbox-img');
+      const caption = document.getElementById('lightbox-caption');
+
+      img.src = galleryImages[index].src;
+      img.alt = galleryImages[index].title;
+      caption.innerHTML = `<strong>${galleryImages[index].title}</strong> - ${galleryImages[index].desc}`;
+
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        img.classList.remove('opacity-0');
+      }, 50);
+
+      document.body.style.overflow = 'hidden';
+    }
+
+    window.closeLightbox = function() {
+      const modal = document.getElementById('lightbox-modal');
+      const img = document.getElementById('lightbox-img');
+      img.classList.add('opacity-0');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+        img.src = '';
+      }, 300);
+
+      document.body.style.overflow = '';
+    }
+
+    window.nextLightboxImage = function() {
+      currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+      updateLightboxImage();
+    }
+
+    window.prevLightboxImage = function() {
+      currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+      updateLightboxImage();
+    }
+
+    function updateLightboxImage() {
+      const img = document.getElementById('lightbox-img');
+      const caption = document.getElementById('lightbox-caption');
+
+      img.classList.add('opacity-0');
+      setTimeout(() => {
+        img.src = galleryImages[currentImageIndex].src;
+        img.alt = galleryImages[currentImageIndex].title;
+        caption.innerHTML = `<strong>${galleryImages[currentImageIndex].title}</strong> - ${galleryImages[currentImageIndex].desc}`;
+        setTimeout(() => {
+          img.classList.remove('opacity-0');
+        }, 50);
+      }, 200);
+    }
+
+    // Keyboard support for Lightbox
+    window.addEventListener('keydown', function(e) {
+      const modal = document.getElementById('lightbox-modal');
+      if (modal && !modal.classList.contains('hidden')) {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowRight') nextLightboxImage();
+        if (e.key === 'ArrowLeft') prevLightboxImage();
+      }
+    });
 
     function switchQuoteTab(category) {
       document.querySelectorAll('.quote-tab-content').forEach(content => {
@@ -2477,6 +2747,7 @@
       '#about': () => scrollToSection('about'),
       '#services': showServicesView,
       '#academy': () => scrollToSection('academy'),
+      '#gallery': () => scrollToSection('gallery'),
       '#booking': () => scrollToSection('booking'),
       '#visit': () => scrollToSection('visit'),
       '#contact': () => scrollToSection('visit')
@@ -2599,7 +2870,7 @@
         msg += `\n*Details / Quote summary*:\n${notes}\n`;
       }
 
-      const whatsappNumber = ' 8961057474';
+      const whatsappNumber = '9831714067';
       const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
 
       window.open(whatsappUrl, '_blank');
@@ -2633,6 +2904,54 @@
         drawer.classList.add('translate-x-full');
       }
     }
+
+    let isGalleryExpanded = false;
+
+    window.toggleMobileGallery = function() {
+      const cards = document.querySelectorAll('.gallery-card');
+      const btn = document.getElementById('view-more-gallery-btn');
+
+      if (isGalleryExpanded) {
+        // Collapse: hide items from index 3 onwards
+        cards.forEach((card, idx) => {
+          if (idx >= 3) {
+            card.classList.add('hidden-mobile-gallery');
+          }
+        });
+        btn.textContent = 'View More Photos';
+        isGalleryExpanded = false;
+      } else {
+        // Expand: show all items
+        cards.forEach(card => {
+          card.classList.remove('hidden-mobile-gallery');
+        });
+        btn.textContent = 'View Less';
+        isGalleryExpanded = true;
+      }
+    }
+
+    // Scroll reveal animation script using Intersection Observer
+    document.addEventListener('DOMContentLoaded', function () {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        });
+      }, {
+        root: null,
+        threshold: 0.08, // trigger when 8% of the division is visible
+        rootMargin: "0px 0px -40px 0px"
+      });
+
+      // Target all sections and footer except the hero-section (which should be instantly interactive)
+      document.querySelectorAll('section, footer').forEach(el => {
+        if (el.id !== 'hero-section') {
+          el.classList.add('reveal-section');
+          revealObserver.observe(el);
+        }
+      });
+    });
   </script>
 </body>
 
