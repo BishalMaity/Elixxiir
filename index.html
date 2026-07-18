@@ -578,13 +578,13 @@
     <div class="lh-content" id="hero-content">
       <div class="lh-text">
         <div class="lh-eyebrow">PREMIUM BEAUTY EXPERIENCE</div>
-        <h1 class="lh-headline">Elixxiir Salon<br>Behala, Kolkata</h1>
+        <h1 class="lh-headline"><span class="lh-business-name">Elixxiir Salon</span><br>Behala, Kolkata</h1>
         <p class="lh-desc">Step into Kolkata's top-rated salon for premium hair styling, custom nail art, extensions,
           and relaxing skin & facial care in a clean, luxurious atmosphere.</p>
 
         <div class="lh-actions">
           <a href="#services" class="lh-cta" style="text-decoration: none;">
-            Book Appointment
+            Book An Appointment
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
               stroke-linejoin="round">
               <polyline points="9 18 15 12 9 6"></polyline>
@@ -2408,8 +2408,10 @@
       }
 
       .liora-hero .lh-logo {
-        font-size: 18px;
+        font-size: 21px;
+        font-weight: 600;
         gap: 6px;
+        color: var(--lh-accent-dark);
       }
 
       .liora-hero .lh-logo svg {
@@ -2442,8 +2444,14 @@
       }
 
       .liora-hero .lh-headline {
-        font-size: 34px;
+        font-size: 38px;
         line-height: 1.15;
+      }
+
+      .liora-hero .lh-business-name {
+        color: var(--lh-accent-dark);
+        font-size: 1.12em;
+        font-weight: 600;
       }
 
       .liora-hero .lh-desc {
@@ -2473,12 +2481,15 @@
         display: block !important;
         position: relative !important;
         width: 100% !important;
+        margin-top: -12px !important;
         border-radius: 18px;
         overflow: hidden;
       }
 
       .liora-hero .lh-image-col img {
-        max-width: 100%;
+        width: 118%;
+        max-width: none;
+        margin-left: -9%;
         border-radius: 18px;
         display: block;
       }
@@ -2889,11 +2900,11 @@
 
     @media (max-width: 420px) {
       .liora-hero .lh-headline {
-        font-size: 28px;
+        font-size: 34px;
       }
 
       .liora-hero .lh-logo {
-        font-size: 16px;
+        font-size: 19px;
       }
 
       .liora-hero .lh-booking {
